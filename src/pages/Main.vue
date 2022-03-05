@@ -1,24 +1,18 @@
 <template>
   <q-page class="">
     <p class="">{{ greeting }}</p>
-    <p class="">{{ flaskGreeting }}</p>
+    <p class="">{{ flask_data.greeting }}</p>
   </q-page>
 </template>
 
-<script>
-export default {
+<script setup>
+import { ref } from 'vue';
+import getFlaskData from 'src/composables/getFlaskData';
 
-  data: function () {
-    return {
-      greeting: "Hello, from Vue!",
-      flaskGreeting: "",
-    };
-  },
-  created: async function () {
-    const gResponse = await fetch("http://localhost:5000/greeting");
-    const gObject = await gResponse.json();
-    this.flaskGreeting = gObject.greeting;
-  },
-};
+const greeting = ref("Hello, from Vue!")
+const flaskGreeting = ref("")
+const {flask_data, error, load} = getFlaskData('greeting')
+
+load()
+
 </script>
-
