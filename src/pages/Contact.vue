@@ -1,8 +1,5 @@
 <template>
-  <q-page class="">
-    <p class="">{{ greeting }}</p>
-    <p class="">{{ flask_data.greeting }}</p>
-  </q-page>
+  <q-img class="" src="..\assets\img\banner\contact_us.png" alt="" />
 </template>
 
 <script setup>

@@ -1,13 +1,14 @@
 <template>
-  <q-page class="bg-blue">
+  <q-page class="">
+    <HomeSlider />
     <p class="">{{ greeting }}</p>
     <p class="">{{ flask_data.greeting }}</p>
   </q-page>
-  <div class="bg-blue">test</div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import HomeSlider from '../components/HomeCarousel.vue'
 import getFlaskData from 'src/composables/getFlaskData';
 
 const greeting = ref("Hello, from Vue!")

@@ -1,9 +1,8 @@
+
 <template>
-  <q-page class="">
-    <p class="">{{ greeting }}</p>
-    <p class="">{{ flask_data.greeting }}</p>
-  </q-page>
+  <q-img class="" src="..\assets\img\banner\about_us.jpg" alt="" />
 </template>
+
 
 <script setup>
 import { ref } from 'vue';
