@@ -1,9 +1,8 @@
 <template>
-  <q-page class="bg-blue">
+  <q-page class="">
     <p class="">{{ greeting }}</p>
     <p class="">{{ flask_data.greeting }}</p>
   </q-page>
-  <div class="bg-blue">test</div>
 </template>
 
 <script setup>

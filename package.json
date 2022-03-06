@@ -2,7 +2,7 @@
   "name": "fsd_vue",
   "version": "0.0.1",
   "description": "Flight Sim Discovery",
-  "productName": "FSDVue",
+  "productName": "Flight Sim Discovery",
   "author": "Richard-Walter <willthisnamedo@gmail.com>",
   "private": true,
   "scripts": {

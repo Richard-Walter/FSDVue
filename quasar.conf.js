@@ -140,8 +140,8 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `FSDVue`,
-        short_name: `FSDVue`,
+        name: `Flight Sim Discovery`,
+        short_name: `Flight Sim Discovery`,
         description: `Flight Sim Discovery`,
         display: "standalone",
         orientation: "portrait",
