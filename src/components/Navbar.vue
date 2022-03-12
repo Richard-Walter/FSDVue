@@ -143,17 +143,11 @@
 <script setup>
 import { ref } from "vue";
 const menuList = ref([
+
   {
-    icon: "home",
-    label: "Home",
-    route: "/",
-    separator: true,
-    display: "all",
-  },
-  {
-    icon: "design_services",
-    label: "Services",
-    route: "/services",
+    icon: "insights",
+    label: "Stats",
+    route: "/stats",
     separator: false,
     display: "all",
   },
@@ -165,11 +159,11 @@ const menuList = ref([
     display: "all",
   },
   {
-    icon: "feed",
-    label: "Site Info",
-    route: "/site_info",
+    icon: "mail",
+    label: "Contact",
+    route: "/contact",
     separator: false,
-    display: "logged_in",
+    display: "all",
   },
   {
     icon: "login",
@@ -180,7 +174,7 @@ const menuList = ref([
   },
 ]);
 const drawer = ref(false);
-const user = ref(true);
+const user = ref(false);
 </script>
 
 <style scoped>
