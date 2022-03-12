@@ -34,6 +34,7 @@
       >
         <!-- <q-route-tab to="/" label="Home" /> -->
         <q-route-tab to="/login" label="Login" />
+        <q-route-tab to="/register" label="Register" />
       </q-tabs>
     </div>
 
@@ -178,7 +179,7 @@ const menuList = ref([
   },
 ]);
 const drawer = ref(false);
-const user = ref(true);
+const user = ref(false);
 </script>
 
 <style scoped>
