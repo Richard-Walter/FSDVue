@@ -11,7 +11,7 @@
 
     <!-- All users -->
     <q-tabs
-      v-if="$q.screen.gt.xs"
+      v-if="$q.screen.gt.sm"
       indicator-color="transparent"
       active-color="light-blue-4"
       align="left"
@@ -26,7 +26,7 @@
     <!-- logged out users -->
     <div v-if="!user">
       <q-tabs
-        v-if="$q.screen.gt.xs"
+        v-if="$q.screen.gt.sm"
         indicator-color="transparent"
         active-color="light-blue-4"
         align="left"
@@ -75,11 +75,11 @@
         </q-menu>
       </q-btn>
     </div>
-    <q-btn  @click="$router.replace('https://www.buymeacoffee.com/FSDiscovery')" label="Donate" class="q-ml-md" style="color:white; background-color:#dc3545"/>
+    <q-btn  v-if="$q.screen.gt.sm" @click="$router.replace('https://www.buymeacoffee.com/FSDiscovery')" label="Donate" class="q-ml-md" style="color:white; background-color:#dc3545"/>
 
     <!-- Right=hand Drawer-->
     <q-btn
-      v-if="$q.screen.lt.sm"
+      v-if="$q.screen.lt.md"
       flat
       @click="drawer = !drawer"
       round
@@ -92,6 +92,7 @@
       :width="200"
       :breakpoint="500"
       bordered
+      overlay="true"
       class="bg-grey-3"
     >
       <q-list>
@@ -179,7 +180,7 @@ const menuList = ref([
   },
 ]);
 const drawer = ref(false);
-const user = ref(false);
+const user = ref(true);
 </script>
 
 <style scoped>
