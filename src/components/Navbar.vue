@@ -75,7 +75,13 @@
         </q-menu>
       </q-btn>
     </div>
-    <q-btn  v-if="$q.screen.gt.sm" @click="$router.replace('https://www.buymeacoffee.com/FSDiscovery')" label="Donate" class="q-ml-md" style="color:white; background-color:#dc3545"/>
+    <q-btn
+      v-if="$q.screen.gt.sm"
+      @click="$router.replace('https://www.buymeacoffee.com/FSDiscovery')"
+      label="Donate"
+      class="q-ml-md"
+      style="color: white; background-color: #dc3545"
+    />
 
     <!-- Right=hand Drawer-->
     <q-btn
@@ -92,7 +98,7 @@
       :width="200"
       :breakpoint="500"
       bordered
-      overlay="true"
+      overlay
       class="bg-grey-3"
     >
       <q-list>
@@ -143,7 +149,6 @@
 <script setup>
 import { ref } from "vue";
 const menuList = ref([
-
   {
     icon: "insights",
     label: "Stats",
