@@ -20,11 +20,6 @@ const routes = [
     children: [{ path: "", component: () => import("pages/Contact.vue") }],
   },
   {
-    path: "/account",
-    component: () => import("layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("pages/Account.vue") }],
-  },
-  {
     path: "/login",
     component: () => import("layouts/MainLayout.vue"),
     children: [{ path: "", component: () => import("pages/Login.vue") }],

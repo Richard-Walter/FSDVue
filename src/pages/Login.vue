@@ -1,5 +1,5 @@
 <template>
-  <q-img class="" src="..\assets\img\banner\login_bg.jpg" alt="" />
+  <q-img class="" src="images\banner\login_bg.jpg" alt="" />
 </template>
 
 <script setup>

@@ -23,17 +23,6 @@
       <q-route-tab to="/Contact" label="contact" />
     </q-tabs>
     <q-space></q-space>
-    <div v-if="user">
-      <q-tabs
-        v-if="$q.screen.gt.xs"
-        indicator-color="transparent"
-        active-color="light-blue-4"
-        align="left"
-        inline-label
-      >
-        <q-route-tab to="/account" label="Account" />
-      </q-tabs>
-    </div>
     <!-- logged out users -->
     <div v-if="!user">
       <q-tabs
@@ -64,7 +53,19 @@
             <q-separator />
             <q-separator />
             <q-item clickable class="GL__menu-link">
-              <q-item-section>Settings</q-item-section>
+              <q-item-section>Points of Interest</q-item-section>
+            </q-item>
+            <q-item clickable class="GL__menu-link">
+              <q-item-section>Recorded Flights</q-item-section>
+            </q-item>
+            <q-item clickable class="GL__menu-link">
+              <q-item-section>Flight Plans</q-item-section>
+            </q-item>
+            <q-item clickable class="GL__menu-link">
+              <q-item-section>Airports</q-item-section>
+            </q-item>
+            <q-item clickable class="GL__menu-link">
+              <q-item-section>Update Account</q-item-section>
             </q-item>
             <q-item clickable class="GL__menu-link">
               <q-item-section @click="signOutUser">Sign out</q-item-section>
@@ -73,6 +74,9 @@
         </q-menu>
       </q-btn>
     </div>
+    <q-btn  @click="$router.replace('https://www.buymeacoffee.com/FSDiscovery')" label="Donate" class="q-ml-md" style="color:white; background-color:#dc3545"/>
+
+    <!-- Right=hand Drawer-->
     <q-btn
       v-if="$q.screen.lt.sm"
       flat
@@ -135,7 +139,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 const menuList = ref([
   {
     icon: "home",
@@ -175,8 +179,6 @@ const menuList = ref([
 ]);
 const drawer = ref(false);
 const user = ref(true);
-
-
 </script>
 
 <style scoped>

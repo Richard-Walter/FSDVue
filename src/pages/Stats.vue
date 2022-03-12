@@ -1,5 +1,5 @@
 <template>
-  <q-img class="" src="..\assets\img\banner\stats.jpg" alt="" />
+  <q-img class="" src="images\banner\stats.jpg" alt="" />
 </template>
 
 <script setup>

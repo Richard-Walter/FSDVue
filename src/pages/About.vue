@@ -1,6 +1,6 @@
 
 <template>
-  <q-img class="" src="..\assets\img\banner\about_us.jpg" alt="" />
+  <q-img class="" src="images\banner\about_us.jpg" alt="" />
 </template>
 
 
