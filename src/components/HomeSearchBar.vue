@@ -47,23 +47,25 @@
         />
       </div>
       <div>
-        <q-btn
-          @click="searchPois"
-          class="search_btn"
-          label="Search"
-          size="1.1em"
-          color="negative"
-          no-caps
+        <div class="">
+          <q-btn
+            @click="searchPois"
+            class="search_btn"
+            label="Search"
+            size="1.1em"
+            color="negative"
+            no-caps
+          />
+        </div>
+      </div>
+      <div class="show_my_flights_container">
+        <q-checkbox
+          dark
+          size="xs"
+          v-model="showFlights"
+          label="show my flights"
         />
       </div>
-    </div>
-    <div class="show_my_flights_container">
-      <q-checkbox
-        dark
-        size="xs"
-        v-model="showFlights"
-        label="show my flights"
-      />
     </div>
   </div>
 </template>
@@ -79,13 +81,12 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap");
 
-
-.container{
+.container {
   background-color: $dark_blue;
   color: white;
   padding: 2em;
+  padding-bottom: 3em;
   color: white;
-
 }
 #home_search_bar_container {
   display: flex;
@@ -94,9 +95,11 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 }
 
 .show_my_flights_container {
+
+  position: relative;
+  top: 3.5em;
+  right: 9em;
 }
-
-
 
 .q-field {
   min-width: 10em;
