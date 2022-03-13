@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container gt-sm">
     <div id="home_search_bar_container">
-      <div class="q-mx-md text-h6">Where you want to explore?</div>
+      <div class="text-h6 explore-text">Where you want to explore?</div>
       <div>
         <q-select
           outlined
@@ -88,17 +88,23 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
   padding-bottom: 3em;
   color: white;
 }
+
 #home_search_bar_container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.show_my_flights_container {
+.explore-text {
+  margin-right: 1em;
+}
 
-  position: relative;
-  top: 3.5em;
-  right: 9em;
+
+
+.show_my_flights_container {
+  // position: relative;
+  // top: 3.5em;
+  // right: 9em;
 }
 
 .q-field {
@@ -106,6 +112,9 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
   margin-right: 2em;
 }
 
+.search_btn {
+  margin-right: 1em;
+}
 .search_btn:hover {
   background: #1dc6b6 !important;
   color: #fff !important;
