@@ -59,14 +59,6 @@
         </div>
       </div>
     </div>
-    <div class="show_my_flights_container">
-      <q-checkbox
-        dark
-        size="xs"
-        v-model="showFlights"
-        label="show my flights"
-      />
-    </div>
   </div>
 </template>
 
@@ -74,7 +66,7 @@
 import { reactive, ref } from "vue";
 
 const model = ref(null);
-const showFlights = ref(false);
+
 const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 </script>
 
@@ -85,7 +77,6 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
   background-color: $dark_blue;
   color: white;
   padding: 2em;
-  padding-bottom: 3em;
   color: white;
 }
 
@@ -97,12 +88,6 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 
 .explore-text {
   margin-right: 1em;
-}
-
-.show_my_flights_container {
-  // position: relative;
-  // top: 3.5em;
-  // right: 10em;
 }
 
 .q-field {

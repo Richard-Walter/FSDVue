@@ -4,6 +4,7 @@
     <HomeSearchBar />
       <p>Flask says: {{ flask_data.greeting }}</p>
     <TipsAndTricks />
+    <GoogleMap />
 
   </q-page>
 </template>
@@ -13,6 +14,7 @@ import { ref } from 'vue';
 import HomeSlider from '../components/HomeCarousel.vue'
 import HomeSearchBar from 'src/components/HomeSearchBar.vue';
 import TipsAndTricks from 'src/components/TipsAndTricks.vue';
+import GoogleMap from 'src/components/GoogleMap.vue';
 import getFlaskData from 'src/composables/getFlaskData';
 
 const flaskGreeting = ref("")
