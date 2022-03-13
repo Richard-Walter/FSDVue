@@ -29,24 +29,6 @@
         </div>
       </q-carousel-slide>
 
-      <!-- <q-carousel-slide
-        :name="2"
-        img-src="..\assets\img\banner\banner2.jpg"
-      >
-        <div class="absolute-center custom-caption">
-          <div class="text-h1">Australia</div>
-          <a href="#where_togo_area" class="explore_now_btn" data-value="46.818188, 8.227512, 7">Explore Now</a>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide
-        :name="1"
-        img-src="..\assets\img\banner\banner1.jpg"
-      >
-        <div class="absolute-center custom-caption">
-          <div class="text-h1">Australia</div>
-          <a href="#where_togo_area" class="explore_now_btn" data-value="46.818188, 8.227512, 7">Explore Now</a>
-        </div>
-      </q-carousel-slide> -->
     </q-carousel>
   </div>
 </template>

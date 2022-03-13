@@ -4,7 +4,9 @@
     <HomeSearchBar />
       <p>Flask says: {{ flask_data.greeting }}</p>
     <TipsAndTricks />
-    <GoogleMap />
+    <!-- <GoogleMap /> -->
+    <PopularDestinations />
+    <QuotesCarousel />
 
   </q-page>
 </template>
@@ -15,6 +17,9 @@ import HomeSlider from '../components/HomeCarousel.vue'
 import HomeSearchBar from 'src/components/HomeSearchBar.vue';
 import TipsAndTricks from 'src/components/TipsAndTricks.vue';
 import GoogleMap from 'src/components/GoogleMap.vue';
+import PopularDestinations from 'src/components/PopularDestinations.vue';
+import QuotesCarousel from 'src/components/QuotesCarousel.vue';
+
 import getFlaskData from 'src/composables/getFlaskData';
 
 const flaskGreeting = ref("")
