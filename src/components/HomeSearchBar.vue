@@ -58,14 +58,14 @@
           />
         </div>
       </div>
-      <div class="show_my_flights_container">
-        <q-checkbox
-          dark
-          size="xs"
-          v-model="showFlights"
-          label="show my flights"
-        />
-      </div>
+    </div>
+    <div class="show_my_flights_container">
+      <q-checkbox
+        dark
+        size="xs"
+        v-model="showFlights"
+        label="show my flights"
+      />
     </div>
   </div>
 </template>
@@ -99,12 +99,10 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
   margin-right: 1em;
 }
 
-
-
 .show_my_flights_container {
   // position: relative;
   // top: 3.5em;
-  // right: 9em;
+  // right: 10em;
 }
 
 .q-field {

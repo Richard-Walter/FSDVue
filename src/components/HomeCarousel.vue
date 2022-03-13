@@ -93,13 +93,11 @@ const banner_items = [
   cursor: pointer;
 }
 
-/* line 42, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_btn.scss */
 .explore_now_btn:hover {
   background: #ff4a52;
   color: #fff !important;
 }
 
-/* line 46, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_btn.scss */
 .explore_now_btn:focus {
   outline: none;
 }
