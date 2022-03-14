@@ -28,7 +28,7 @@ onMounted(async () => {
     },
     options: {
       // gestureHandling: gestureHandling,
-      gestureHandling: 'greedy'
+      // gestureHandling: 'greedy'
       
     },
     fullscreenControl: true,
