@@ -19,7 +19,7 @@
       :key="item.id"
       :name="index"
     >
-      <div class="text-body1 text-italic text-weight-medium">{{ item.text }}</div>
+      <div class="text-body1 text-italic text-center text-weight-medium">{{ item.text }}</div>
       <div class="text-subtitle2 q-mt-sm" style="color:#7a7264">{{ item.author }}</div>
     </q-carousel-slide>
   </q-carousel>

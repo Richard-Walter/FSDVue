@@ -1,5 +1,5 @@
 <template>
-  <q-layout containerview="hHh lpR fff" class="body">
+  <q-layout view="hHh lpR fff" class="body">
     <q-header class="bg-white text-black site_header">
       <Navbar />
     </q-header>
@@ -47,6 +47,8 @@ export default {
   /* max-width: 100em; */
   margin-left: auto;
   margin-right: auto;
+  
+
 }
 .site_footer {
   color: #7a838b;
