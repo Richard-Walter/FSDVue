@@ -4,10 +4,9 @@
     <HomeSearchBar />
       <p>Flask says: {{ flask_data.greeting }}</p>
     <TipsAndTricks />
-    <!-- <GoogleMap /> -->
+    <GoogleMap />
     <PopularDestinations />
     <QuotesCarousel />
-
   </q-page>
 </template>
 

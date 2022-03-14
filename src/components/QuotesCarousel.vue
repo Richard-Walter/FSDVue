@@ -1,5 +1,6 @@
 <template>
   <q-carousel
+    class="q-mt-lg"
     animated
     v-model="slide"
     infinite

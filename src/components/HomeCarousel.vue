@@ -12,7 +12,7 @@
       @mouseleave="autoplay = true"
     >
       <q-carousel-slide
-        div
+        
         v-for="(item, index) in banner_items"
         :key="item.id"
         :name="index"
