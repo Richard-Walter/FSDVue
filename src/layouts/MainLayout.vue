@@ -6,6 +6,13 @@
 
     <q-page-container class="page_container">
       <router-view />
+      <q-page-scroller
+        position="bottom-right"
+        :scroll-offset="150"
+        :offset="[18, 18]"
+      >
+        <q-btn fab icon="keyboard_arrow_up" color="accent" />
+      </q-page-scroller>
     </q-page-container>
 
     <q-footer elevated class="q-pa-lg text-center site_footer">
@@ -15,9 +22,7 @@
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-
-
+import Navbar from "../components/Navbar.vue";
 </script>
 
 <!-- <script>
@@ -47,8 +52,6 @@ export default {
   /* max-width: 100em; */
   margin-left: auto;
   margin-right: auto;
-  
-
 }
 .site_footer {
   color: #7a838b;
