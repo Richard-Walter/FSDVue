@@ -51,7 +51,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import load from "../composables/getFlaskData";
+import useLogin from "../composables/useLogin";
 import { useQuasar } from "quasar";
 
 const router = useRouter();
@@ -78,7 +78,7 @@ const invalidLoginMsg = ref("");
 
 const rememberMe = ref(true)
 
-const { login, error } = load();
+const { error, login, isPending} = useLogin();
 
 const handleSubmit = async () => {
   //check for valid email
@@ -99,11 +99,11 @@ const handleSubmit = async () => {
       color: "positive",
       message: `Login Successful`,
     });
-    router.push("/site_info");
+    router.push("/");
   } else {
     $q.notify({
       color: "negative",
-      message: `${error.value}.  Please try again.`,
+      message: `${error.value}`,
     });
     // invalidLoginMsg.value = error.value + ".  Please try again.";
   }
