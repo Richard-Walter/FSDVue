@@ -28,6 +28,7 @@ import { useAuthStore } from '../store/auth.js'
 // load()
 
 const auth = useAuthStore()
+auth.setUser('Richard')
 
 </script>
 

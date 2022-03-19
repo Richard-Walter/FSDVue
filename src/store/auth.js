@@ -11,7 +11,7 @@ export const useAuthStore = defineStore('auth', {
 
     setUser(payload){
       this.user = payload
-      console.log('user state changed', user);
+      console.log('user state changed', this.user);
     },
     
   },
