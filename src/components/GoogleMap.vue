@@ -14,6 +14,18 @@ const mapDiv = ref(null);
 let map = ref(null);
 let clickListener = null;
 
+
+
+const getAirports = async () =>{
+  let deleteme = false
+  let response = await fetch("/data/FSD_airports.json");
+  let airports = await response.json()
+  console.log(airports);
+  return airports
+}
+
+const airports = getAirports();
+
 onMounted(async () => {
   await loader.load();
   map.value = new google.maps.Map(mapDiv.value, {
@@ -21,7 +33,7 @@ onMounted(async () => {
     // center: { lat: map_center_lat, lng: map_center_long },
     // zoom: map_zoom,
     zoom: 5,
-    
+
     restriction: {
       latLngBounds: { north: 85, south: -85, west: -180, east: 180 },
       strictBounds: false,
@@ -29,7 +41,7 @@ onMounted(async () => {
     options: {
       // gestureHandling: gestureHandling,
       // gestureHandling: 'greedy'
-      
+
     },
     fullscreenControl: true,
     fullscreenControlOptions: {
@@ -59,7 +71,6 @@ onUnmounted(async () => {
 
 <style lang="scss" scoped>
 .map_container {
- 
   height: 800px;
 }
 </style>
