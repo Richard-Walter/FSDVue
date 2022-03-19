@@ -2,7 +2,7 @@
   <q-page class="">
     <HomeSlider />
     <HomeSearchBar />
-      <p>Flask says: {{ flask_data.greeting }}</p>
+      <p>Current user is: {{ auth.user }}</p>
     <TipsAndTricks />
     <GoogleMap />
     <PopularDestinations />
@@ -19,12 +19,15 @@ import GoogleMap from 'src/components/GoogleMap.vue';
 import PopularDestinations from 'src/components/PopularDestinations.vue';
 import QuotesCarousel from 'src/components/QuotesCarousel.vue';
 
-import getFlaskData from 'src/composables/getFlaskData';
+// import getFlaskData from 'src/composables/getFlaskData';
 
-const flaskGreeting = ref("")
-const {flask_data, error, load} = getFlaskData('greeting')
+import { useAuthStore } from '../store/auth.js'
 
-load()
+// const flaskGreeting = ref("")
+// const {flask_data, error, load} = getFlaskData('greeting')
+// load()
+
+const auth = useAuthStore()
 
 </script>
 
