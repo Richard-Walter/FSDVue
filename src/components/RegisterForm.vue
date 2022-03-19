@@ -1,6 +1,17 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <q-input
+      ref="nameRef"
+      v-model="name"
+      dense
+      bg-color="white"
+      outlined
+      placeholder="Name"
+      lazy-rules="ondemand"
+      :rules="nameRules"
+    />
+    
+    <q-input
       ref="emailRef"
       v-model="email"
       dense
@@ -10,6 +21,7 @@
       lazy-rules="ondemand"
       :rules="emailRules"
     />
+
     <q-input
       ref="passwordRef"
       v-model="password"
@@ -28,17 +40,30 @@
           @click="isPwd = !isPwd"
         />
       </template>
-      
     </q-input>
-    <div>
-    <q-checkbox class="remember_me" style="text-align: left" size="xs" color="info" right-label v-model="rememberMe" label="Remember me" />
-    </div>
+    <q-input
+      ref="passwordConfirmRef"
+      v-model="passwordConfirm"
+      dense
+      bg-color="white"
+      outlined
+      :type="isPwd ? 'password' : 'text'"
+      placeholder="Confirm Password"
+      lazy-rules="ondemand"
+      :rules="passwordConfirmRules"
+    >
+      <template v-slot:append>
+        <q-icon
+          :name="isPwd ? 'visibility_off' : 'visibility'"
+          class="cursor-pointer"
+          @click="isPwd = !isPwd"
+        />
+      </template>
+    </q-input>
+
     <div class="flex-left">
       <div>
-        <q-btn outline label="Log in" type="submit" color="info" />
-      </div>
-      <div class="text-caption q-ml-md" @click="showLogin = false">
-        <a  class="text-black q-ml-sm" style="text-decoration: none;" href="/reset_password">Forgot password?</a>
+        <q-btn outline label="Sign UP" type="submit" color="info" />
       </div>
     </div>
   </form>
@@ -50,7 +75,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import useLogin from "../composables/useLogin";
+import useSignup from "../composables/useSignup.js";
 import { useQuasar } from "quasar";
 
 const router = useRouter();
@@ -58,6 +83,12 @@ const $q = useQuasar();
 
 const validRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+const name = ref(null);
+const nameRef = ref(null);
+const nameRules = [
+  (val) => (val && val.length > 1) || "Please enter a user name",
+];
 
 const email = ref(null);
 const emailRef = ref(null);
@@ -72,31 +103,46 @@ const passwordRules = [
   (val) => (val && val.length > 5) || "Password must be at least 6 characters",
 ];
 
+const passwordConfirm = ref("");
+const passwordConfirmRef = ref(null);
+const passwordConfirmRules = [
+  (val) =>
+    (val && val === password.value) ||
+    "Confirm password must be equal to password.",
+];
+
 const isPwd = ref("true");
 const invalidLoginMsg = ref("");
 
-const rememberMe = ref(true)
-
-const { error, login, isPending} = useLogin();
+const { error, signup, isPending } = useSignup();
 
 const handleSubmit = async () => {
+  //check for valid name
+  if (!nameRef.value.validate()) {
+    return; //invalid name
+  }
   //check for valid email
   if (!emailRef.value.validate()) {
     return; //invalid email
   }
 
-  //check for valid email
+  //check for valid password
   if (!passwordRef.value.validate()) {
     return; //invalid password
   }
 
-  await login(email.value, password.value);
+  //check for valid confirm password
+  if (!passwordConfirmRef.value.validate()) {
+    return;
+  }
+
+  await signup(email.value, password.value);
 
   if (!error.value) {
     //success - route to site_details
     $q.notify({
       color: "positive",
-      message: `Login Successful`,
+      message: `Registration Successful`,
     });
     router.push("/");
   } else {
@@ -110,16 +156,9 @@ const handleSubmit = async () => {
 </script>
 
 <style>
-
-.remember_me{
-
-    margin-left: -0.5em;
-    margin-bottom: 1em;
-}
 .flex-left {
   display: flex;
   justify-content: left;
   align-items: center;
 }
-
 </style>

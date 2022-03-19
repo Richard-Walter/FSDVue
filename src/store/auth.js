@@ -13,6 +13,9 @@ export const useAuthStore = defineStore('auth', {
       this.user = payload
       console.log('user state changed', this.user);
     },
-    
+    signup(payload) {
+      console.log('signup action');
+
+    }
   },
 });
