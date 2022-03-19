@@ -87,16 +87,10 @@ export const useAuthStore = defineStore("auth", {
       this.isPending = true;
 
       try {
-        const res = await signOut(auth);
-        if (!res) {
-          console.log(res)
-          this.error = "Could not sign out";
-          this.isPending = false;
-        } else {
+        await signOut(auth);
+        this.setUser(null);
+        this.isPending = false;
         
-          this.setUser(null);
-          this.isPending = false;
-        }
       } catch (err) {
         console.log(err.message);
         this.isPending = false;

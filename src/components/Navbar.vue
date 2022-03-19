@@ -8,7 +8,7 @@
         </a>
       </router-link>
     </div>
-
+    <template v-if="authIsReady">
     <!-- All users -->
     <q-tabs
       v-if="$q.screen.gt.sm"
@@ -143,11 +143,12 @@
         </template>
       </q-list>
     </q-drawer>
+    </template>
   </q-toolbar>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useAuthStore } from '../store/auth.js';
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
@@ -196,6 +197,10 @@ const menuList = ref([
 ]);
 const drawer = ref(false);
 
+const authIsReady = computed(()=> {
+  return authStore.authIsReady
+})
+
 const signOutUser = async () => {
 
   await authStore.logout()
@@ -203,7 +208,7 @@ const signOutUser = async () => {
   if (!authStore.error) {
     //success - route to site_details
     $q.notify({
-      color: "positive",
+      color: "warning",
       message: `You have been logged out`,
     });
     router.push("/");
