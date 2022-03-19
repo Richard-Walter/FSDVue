@@ -143,7 +143,8 @@ const handleSubmit = async () => {
   }
 
   // await signup(email.value, password.value);
-  await authStore.signup(email.value, password.value)
+  
+  await authStore.signup(email.value, password.value, name.value)
 
   if (!authStore.error) {
     //success - route to site_details
