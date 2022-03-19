@@ -1,4 +1,4 @@
-<!-- 
+
 <template>
   <q-img class="" src="images\banner\about_us.jpg" alt="" />
 </template>
@@ -14,19 +14,5 @@ const {flask_data, error, load} = getFlaskData('greeting')
 
 load()
 
-</script> -->
-
-<template>
-  <div>
-    <p>hello</p>
-    <q-toggle v-model="store.counter" />
-  </div>
-</template>
-
-<script setup>
-import { computed } from 'vue'
-import { useCounterStore } from '../store/test.js'
-
-const store = useCounterStore()
-
 </script>
+

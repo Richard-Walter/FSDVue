@@ -2,7 +2,7 @@
   <q-page class="">
     <HomeSlider />
     <HomeSearchBar />
-      <p>Current user is: {{ auth.user }}</p>
+      <p>Current user is: {{ authStore.user }}</p>
     <TipsAndTricks />
     <GoogleMap />
     <PopularDestinations />
@@ -13,7 +13,7 @@
 <script setup>
 import { ref } from 'vue';
 import HomeSlider from '../components/HomeCarousel.vue'
-import HomeSearchBar from 'src/components/HomeSearchBar.vue';
+import HomeSearchBar from '../components/HomeSearchBar.vue';
 import TipsAndTricks from 'src/components/TipsAndTricks.vue';
 import GoogleMap from 'src/components/GoogleMap.vue';
 import PopularDestinations from 'src/components/PopularDestinations.vue';
@@ -27,8 +27,8 @@ import { useAuthStore } from '../store/auth.js'
 // const {flask_data, error, load} = getFlaskData('greeting')
 // load()
 
-const auth = useAuthStore()
-auth.setUser('Richard')
+const authStore = useAuthStore()
+authStore.setUser('Richard')
 
 </script>
 
