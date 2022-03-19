@@ -10,9 +10,11 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: null,
+    authIsReady: false,
     isPending: false,
     error: null,
   }),
@@ -21,9 +23,9 @@ export const useAuthStore = defineStore("auth", {
     // doubleCount: (state) => state.counter * 2,
     getUsername: (state) => {
       if (state.user){
-        return state.user.email;
+        return state.user.displayName;
       }
-      return 'No user logged in'
+      return 'Unknown'
   },
     
   },
@@ -31,6 +33,10 @@ export const useAuthStore = defineStore("auth", {
     setUser(payload) {
       this.user = payload;
       console.log("user state changed", this.user);
+    },
+    setAuthIsReady(payload) {
+      this.authIsReady = payload;
+      console.log("auth is readyd");
     },
     async signup(email, password, name) {
       this.error = null;
@@ -98,6 +104,17 @@ export const useAuthStore = defineStore("auth", {
     },
   },
 });
+
+const authStore = useAuthStore()
+
+// check on startup if user is logged in or not
+const unsub = onAuthStateChanged(auth, (user) => {
+
+  authStore.setAuthIsReady(true)
+  authStore.setUser(user)
+  //we only want to do this once at startup otherwise it will fire when ever a user loggins in or out
+  unsub()
+})
 
 const mapAuthCodeToMessage = (authCode) => {
   switch (authCode) {

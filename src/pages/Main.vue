@@ -2,7 +2,7 @@
   <q-page class="">
     <HomeSlider />
     <HomeSearchBar />
-    <p>Current user is: {{ username}}</p>
+    <p>Current user is: {{ authStore.getUsername}}</p>
     <TipsAndTricks />
     <GoogleMap />
     <PopularDestinations />
@@ -28,14 +28,14 @@ import { useAuthStore } from '../store/auth.js'
 const authStore = useAuthStore()
 console.log( authStore.getUsername);
 
-const username = computed(()=> {
-  let user = authStore.user
-  if (user) {
-    return user.email
-  }
-  return ' no user logged in'
+// const username = computed(()=> {
+//   let user = authStore.user
+//   if (user) {
+//     return user.email
+//   }
+//   return ' no user logged in'
 
-})
+// })
 
 
 </script>

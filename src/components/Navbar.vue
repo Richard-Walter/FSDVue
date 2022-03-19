@@ -48,7 +48,7 @@
             <q-item class="GL__menu-link-signed-in">
               <q-item-section>
                 <div>Signed in as</div>
-                <div><strong>Geomatix</strong></div>
+                <div><strong>{{authStore.getUsername}}</strong></div>
               </q-item-section>
             </q-item>
             <q-separator />
