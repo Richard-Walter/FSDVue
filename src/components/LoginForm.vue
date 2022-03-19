@@ -30,9 +30,7 @@
       </template>
       
     </q-input>
-    <div>
-    <q-checkbox class="remember_me" style="text-align: left" size="xs" color="info" right-label v-model="rememberMe" label="Remember me" />
-    </div>
+
     <div class="flex-left">
       <div>
         <q-btn outline label="Log in" type="submit" color="info" />
@@ -42,9 +40,7 @@
       </div>
     </div>
   </form>
-  <!-- <div v-if="invalidLoginMsg" class="text-negative q-mb-md">
-    {{ invalidLoginMsg }}
-  </div> -->
+
 </template>
 
 <script setup>
@@ -75,10 +71,6 @@ const passwordRules = [
 ];
 
 const isPwd = ref("true");
-const invalidLoginMsg = ref("");
-
-const rememberMe = ref(true)
-
 
 const handleSubmit = async () => {
   //check for valid email
@@ -105,7 +97,6 @@ const handleSubmit = async () => {
       color: "negative",
       message: `${authStore.error}`,
     });
-    // invalidLoginMsg.value = error.value + ".  Please try again.";
   }
 };
 </script>
