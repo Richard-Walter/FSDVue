@@ -34,7 +34,7 @@
       >
         <!-- <q-route-tab to="/" label="Home" /> -->
         <q-route-tab to="/login" label="Login" />
-        <q-route-tab to="/register" label="Register" />
+        <q-route-tab to="/register" label="Sign Up" />
       </q-tabs>
     </div>
 
@@ -174,6 +174,13 @@ const menuList = ref([
     icon: "login",
     label: "Login",
     route: "/login",
+    separator: false,
+    display: "logged_out",
+  },
+  {
+    icon: "app_registration",
+    label: "Sign Up",
+    route: "/register",
     separator: false,
     display: "logged_out",
   },
