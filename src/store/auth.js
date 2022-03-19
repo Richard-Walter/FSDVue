@@ -1,21 +1,64 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useAuthStore = defineStore('auth', {
+// firebase imports
+import { auth } from '../firebase/config'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from 'firebase/auth'
+
+export const useAuthStore = defineStore("auth", {
   state: () => ({
-    user: null
+    user: null,
+    isPending: false,
+    error: null
   }),
   getters: {
-    doubleCount: (state) => state.counter * 2,
+    // doubleCount: (state) => state.counter * 2,
   },
   actions: {
-
-    setUser(payload){
-      this.user = payload
-      console.log('user state changed', this.user);
+    setUser(payload) {
+      this.user = payload.email;
+      console.log("user state changed", this.user);
     },
-    signup(payload) {
-      console.log('signup action');
-
-    }
+    async signup(email, password) {
+      this.error = null
+      this.isPending = true
+    
+      try {
+        const res = await createUserWithEmailAndPassword(auth, email, password)
+        if (!res) {
+          throw new Error('Could not complete signup.  Please try again later')
+        }
+        
+        this.error = null
+        this.isPending = false
+      }
+      catch(err) {
+        console.log(err.message)
+        this.error = mapAuthCodeToMessage(err.code)
+        this.isPending = false
+      }
+    },
   },
 });
+
+
+
+const mapAuthCodeToMessage = authCode => {
+  switch (authCode) {
+    case "auth/invalid-password":
+      return "Password provided is not corrected";
+
+    case "auth/invalid-email":
+      return "Email provided is invalid";
+    
+    case "auth/email-already-in-use":
+      return "Email address is already in use";
+
+    default:
+      return authCode;
+  }
+}

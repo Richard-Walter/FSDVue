@@ -75,8 +75,11 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import useSignup from "../composables/useSignup.js";
 import { useQuasar } from "quasar";
+import { useAuthStore } from '../store/auth.js'
+
+const authStore = useAuthStore()
+// authStore.setUser({email:'Annie', password:'dsfsdf'})
 
 const router = useRouter();
 const $q = useQuasar();
@@ -114,9 +117,12 @@ const passwordConfirmRules = [
 const isPwd = ref("true");
 const invalidLoginMsg = ref("");
 
-const { error, signup, isPending } = useSignup();
+// const { error, signup, isPending } = useSignup();
 
 const handleSubmit = async () => {
+
+  
+
   //check for valid name
   if (!nameRef.value.validate()) {
     return; //invalid name
@@ -136,9 +142,10 @@ const handleSubmit = async () => {
     return;
   }
 
-  await signup(email.value, password.value);
+  // await signup(email.value, password.value);
+  await authStore.signup(email.value, password.value)
 
-  if (!error.value) {
+  if (!authStore.error) {
     //success - route to site_details
     $q.notify({
       color: "positive",
@@ -148,7 +155,7 @@ const handleSubmit = async () => {
   } else {
     $q.notify({
       color: "negative",
-      message: `${error.value}`,
+      message: `${authStore.error}`,
     });
     // invalidLoginMsg.value = error.value + ".  Please try again.";
   }

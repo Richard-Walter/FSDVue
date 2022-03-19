@@ -20,15 +20,13 @@ import PopularDestinations from 'src/components/PopularDestinations.vue';
 import QuotesCarousel from 'src/components/QuotesCarousel.vue';
 
 // import getFlaskData from 'src/composables/getFlaskData';
-
-import { useAuthStore } from '../store/auth.js'
-
 // const flaskGreeting = ref("")
 // const {flask_data, error, load} = getFlaskData('greeting')
 // load()
 
+import { useAuthStore } from '../store/auth.js'
 const authStore = useAuthStore()
-authStore.setUser('Richard')
+// authStore.setUser({email:'Richard', password:'dsfsdf'})
 
 </script>
 
