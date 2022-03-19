@@ -68,6 +68,11 @@ import { reactive, ref } from "vue";
 const model = ref(null);
 
 const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
+
+const searchPois = () =>{
+
+  console.log('searching pois');
+}
 </script>
 
 <style lang="scss" scoped>

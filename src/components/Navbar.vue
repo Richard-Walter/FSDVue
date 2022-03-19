@@ -24,7 +24,7 @@
     </q-tabs>
     <q-space></q-space>
     <!-- logged out users -->
-    <div v-if="!user">
+    <div v-if="!authStore.user">
       <q-tabs
         v-if="$q.screen.gt.sm"
         indicator-color="transparent"
@@ -39,7 +39,7 @@
     </div>
 
     <!-- logged in users -->
-    <div v-if="user">
+    <div v-if="authStore.user">
       <q-btn dense flat no-wrap icon="account_circle">
         <q-icon name="arrow_drop_down" size="16px" />
 
@@ -114,7 +114,7 @@
             </q-item>
             <q-separator :key="'sep' + index" v-if="menuItem.separator" />
           </div>
-          <div v-if="user">
+          <div v-if="authStore.user">
             <div v-if="menuItem.display === 'logged_in'">
               <q-item clickable :to="menuItem.route" v-ripple>
                 <q-item-section avatar>
@@ -127,7 +127,7 @@
               <q-separator :key="'sep' + index" v-if="menuItem.separator" />
             </div>
           </div>
-          <div v-if="!user">
+          <div v-if="!authStore.user">
             <div v-if="menuItem.display === 'logged_out'">
               <q-item clickable :to="menuItem.route" v-ripple>
                 <q-item-section avatar>
@@ -148,6 +148,15 @@
 
 <script setup>
 import { ref } from "vue";
+import { useAuthStore } from '../store/auth.js';
+import { useQuasar } from "quasar";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const $q = useQuasar();
+
+const authStore = useAuthStore()
+
+
 const menuList = ref([
   {
     icon: "insights",
@@ -186,7 +195,30 @@ const menuList = ref([
   },
 ]);
 const drawer = ref(false);
-const user = ref(false);
+
+const signOutUser = async () => {
+
+  await authStore.logout()
+
+  if (!authStore.error) {
+    //success - route to site_details
+    $q.notify({
+      color: "positive",
+      message: `You have been logged out`,
+    });
+    router.push("/");
+  } else {
+    $q.notify({
+      color: "negative",
+      message: `${authStore.error}`,
+    });
+    // invalidLoginMsg.value = error.value + ".  Please try again.";
+  }
+
+
+}
+
+
 </script>
 
 <style scoped>

@@ -17,7 +17,15 @@ export const useAuthStore = defineStore("auth", {
     error: null,
   }),
   getters: {
+    //euqivalent of computed values
     // doubleCount: (state) => state.counter * 2,
+    getUsername: (state) => {
+      if (state.user){
+        return state.user.email;
+      }
+      return 'No user logged in'
+  },
+    
   },
   actions: {
     setUser(payload) {
@@ -37,7 +45,7 @@ export const useAuthStore = defineStore("auth", {
           await updateProfile(res.user, {
             displayName: name,
           });
-          this.user = this.setUser(res.user);
+          this.setUser(res.user);
           this.error = null;
           this.isPending = false;
         }
@@ -58,13 +66,32 @@ export const useAuthStore = defineStore("auth", {
           this.isPending = false;
         } else {
         
-          this.user = this.setUser(res.user);
+          this.setUser(res.user.email);
           this.error = null;
           this.isPending = false;
         }
       } catch (err) {
         console.log(err.message);
         this.error = mapAuthCodeToMessage(err.code);
+        this.isPending = false;
+      }
+    },
+    async logout() {
+    
+      this.isPending = true;
+
+      try {
+        const res = await signOut(auth);
+        if (!res) {
+          this.error = "Could not sign out";
+          this.isPending = false;
+        } else {
+        
+          this.setUser(null);
+          this.isPending = false;
+        }
+      } catch (err) {
+        console.log(err.message);
         this.isPending = false;
       }
     },
