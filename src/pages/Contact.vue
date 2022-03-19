@@ -6,6 +6,4 @@
 import { ref } from 'vue';
 
 
-load()
-
 </script>

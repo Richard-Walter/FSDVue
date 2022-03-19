@@ -2,7 +2,7 @@
   <q-page class="">
     <HomeSlider />
     <HomeSearchBar />
-    <p>Current user is: {{ authStore.getUsername }}</p>
+    <p>Current user is: {{ username}}</p>
     <TipsAndTricks />
     <GoogleMap />
     <PopularDestinations />
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref} from 'vue';
+import {ref, computed} from 'vue';
 import HomeSlider from '../components/HomeCarousel.vue'
 import HomeSearchBar from '../components/HomeSearchBar.vue';
 import TipsAndTricks from 'src/components/TipsAndTricks.vue';
@@ -27,6 +27,16 @@ import QuotesCarousel from 'src/components/QuotesCarousel.vue';
 import { useAuthStore } from '../store/auth.js'
 const authStore = useAuthStore()
 console.log( authStore.getUsername);
+
+const username = computed(()=> {
+  let user = authStore.user
+  if (user) {
+    return user.email
+  }
+  return ' no user logged in'
+
+})
+
 
 </script>
 
