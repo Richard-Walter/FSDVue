@@ -59,6 +59,15 @@ onMounted(async () => {
     },
   });
 
+  const myLatLng = { lat: -32.363, lng: 154.044 };
+  let airport_marker = new google.maps.Marker({
+    position: myLatLng,
+   
+    title: "Hello World!",
+  });
+
+  airport_marker.setMap(map.value);
+
   clickListener = map.value.addListener("click", ({ latLng: { lat, lng } }) =>
     alert(`${lat()},${lng()}`)
   );
