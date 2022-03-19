@@ -50,8 +50,10 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import useLogin from "../composables/useLogin";
 import { useQuasar } from "quasar";
+import { useAuthStore } from '../store/auth.js'
+
+const authStore = useAuthStore()
 
 const router = useRouter();
 const $q = useQuasar();
@@ -77,7 +79,6 @@ const invalidLoginMsg = ref("");
 
 const rememberMe = ref(true)
 
-const { error, login, isPending} = useLogin();
 
 const handleSubmit = async () => {
   //check for valid email
@@ -90,9 +91,9 @@ const handleSubmit = async () => {
     return; //invalid password
   }
 
-  await login(email.value, password.value);
+  await authStore.login(email.value, password.value)
 
-  if (!error.value) {
+  if (!authStore.error) {
     //success - route to site_details
     $q.notify({
       color: "positive",
@@ -102,7 +103,7 @@ const handleSubmit = async () => {
   } else {
     $q.notify({
       color: "negative",
-      message: `${error.value}`,
+      message: `${authStore.error}`,
     });
     // invalidLoginMsg.value = error.value + ".  Please try again.";
   }

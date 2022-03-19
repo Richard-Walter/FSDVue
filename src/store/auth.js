@@ -47,11 +47,38 @@ export const useAuthStore = defineStore("auth", {
         this.isPending = false;
       }
     },
+    async login(email, password) {
+      this.error = null;
+      this.isPending = true;
+
+      try {
+        const res = await signInWithEmailAndPassword(auth, email, password);
+        if (!res) {
+          this.error = "Could not sign in.  Please try again later";
+          this.isPending = false;
+        } else {
+        
+          this.user = this.setUser(res.user);
+          this.error = null;
+          this.isPending = false;
+        }
+      } catch (err) {
+        console.log(err.message);
+        this.error = mapAuthCodeToMessage(err.code);
+        this.isPending = false;
+      }
+    },
   },
 });
 
 const mapAuthCodeToMessage = (authCode) => {
   switch (authCode) {
+    case "auth/user-not-found":
+      return "Incorrect email address.  Please try again.";
+      
+    case "auth/wrong-password":
+      return "Incorrect Password.  Please try again.";
+
     case "auth/invalid-password":
       return "Password provided is not corrected";
 

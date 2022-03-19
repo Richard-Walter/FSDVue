@@ -79,7 +79,6 @@ import { useQuasar } from "quasar";
 import { useAuthStore } from '../store/auth.js'
 
 const authStore = useAuthStore()
-// authStore.setUser({email:'Annie', password:'dsfsdf'})
 
 const router = useRouter();
 const $q = useQuasar();
