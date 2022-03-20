@@ -6,7 +6,7 @@
 /* eslint-disable no-undef */
 import { ref, onMounted, onUnmounted } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
-import { buildAirportMarkers } from "../utilities/googleMaps";
+import { buildAirportMarkers } from "../googleMaps/googleMaps";
 
 const GM_API_KEY = process.env.GM_KEY;
 const loader = new Loader({ apiKey: GM_API_KEY });
