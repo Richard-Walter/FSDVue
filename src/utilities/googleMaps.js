@@ -11,21 +11,21 @@ export async function buildAirportMarkers() {
   for (var i = 0; i < msfs_airports.length; i++) {
     //airport information
     let airport_IW_details = msfs_airports[i];
-    let icao = msfs_airports[i]["ICAO"];
-    let airport_name = msfs_airports[i]["Airport_Name"];
-    let airport_city = msfs_airports[i]["City"];
+    let icao = msfs_airports[i]["icao"];
+    let airport_name = msfs_airports[i]["name"];
+    let airport_city = msfs_airports[i]["city"];
     let airport_title = airport_name + " (" + icao + "), " + airport_city;
-    let lat = parseFloat(msfs_airports[i]["Latitude"]);
-    let lng = parseFloat(msfs_airports[i]["Longitude"]);
-    let elevation = parseFloat(msfs_airports[i]["Elevation"]);
-    let show_msfs_airport_on_map = msfs_airports[i]["Show_on_map"];
+    let lat = parseFloat(msfs_airports[i]["latitude"]);
+    let lng = parseFloat(msfs_airports[i]["longitude"]);
+    let elevation = parseFloat(msfs_airports[i]["elevation"]);
+    let show_on_map = msfs_airports[i]["Show_on_map"];
     let tower_freq = msfs_airports[i]["tower_frequency"];
     let id = msfs_airports[i]["id"];
     // let rating_score = getAirportRatingID(id);
 
     let search_name = airport_name + " airport ";
 
-    if (show_msfs_airport_on_map != 1) {
+    if (show_on_map != 1) {
       continue;
     }
 
