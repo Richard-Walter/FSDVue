@@ -6,25 +6,24 @@
 /* eslint-disable no-undef */
 import { ref, onMounted, onUnmounted } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
+import { buildAirportMarkers } from "../utilities/googleMaps";
 
-const GM_API_KEY = process.env.GM_KEY
+const GM_API_KEY = process.env.GM_KEY;
 const loader = new Loader({ apiKey: GM_API_KEY });
 
 const mapDiv = ref(null);
 let map = ref(null);
 let clickListener = null;
 
+// const getAirports = async () =>{
+//   let deleteme = false
+//   let response = await fetch("/data/FSD_airports.json");
+//   let airports = await response.json()
+//   console.log(airports);
+//   return airports
+// }
 
-
-const getAirports = async () =>{
-  let deleteme = false
-  let response = await fetch("/data/FSD_airports.json");
-  let airports = await response.json()
-  console.log(airports);
-  return airports
-}
-
-const airports = getAirports();
+// const airports = getAirports();
 
 onMounted(async () => {
   await loader.load();
@@ -41,7 +40,6 @@ onMounted(async () => {
     options: {
       // gestureHandling: gestureHandling,
       // gestureHandling: 'greedy'
-
     },
     fullscreenControl: true,
     fullscreenControlOptions: {
@@ -59,14 +57,23 @@ onMounted(async () => {
     },
   });
 
-  const myLatLng = { lat: -32.363, lng: 154.044 };
-  let airport_marker = new google.maps.Marker({
-    position: myLatLng,
-   
-    title: "Hello World!",
+  // const myLatLng = { lat: -32.363, lng: 154.044 };
+  // let airport_marker = new google.maps.Marker({
+  //   position: myLatLng,
+
+  //   title: "Hello World!",
+  // });
+
+  // const airportMarkers = await buildAirportMarkers()
+  // console.log(airportMarkers);
+  buildAirportMarkers().then((airportMarkers) => {
+    airportMarkers.forEach((marker) => {
+      console.log("adding marker to map");
+      marker.setMap(map.value);
+    });
   });
 
-  airport_marker.setMap(map.value);
+  // airport_marker.setMap(map.value);
 
   clickListener = map.value.addListener("click", ({ latLng: { lat, lng } }) =>
     alert(`${lat()},${lng()}`)
