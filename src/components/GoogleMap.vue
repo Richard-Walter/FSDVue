@@ -7,20 +7,29 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
 import { buildAirportMarkers } from "../googleMaps/googleMaps";
+import { usePoisStore } from "../store/pois.js";
+import { useAuthStore } from '../store/auth.js'
+
+const authStore = useAuthStore()
+const poisStore = usePoisStore()
 
 const GM_API_KEY = process.env.GM_KEY;
 const loader = new Loader({ apiKey: GM_API_KEY });
 
 const mapDiv = ref(null);
+
 let map = ref(null);
 let clickListener = null;
 
 let mapZoom = ref(5);
 
 onMounted(async () => {
+
+  poisStore.getPoisFromFB()
+
   await loader.load();
   map.value = new google.maps.Map(mapDiv.value, {
-    center: { lat: -32.344, lng: 154.036 },
+    center: { lat: 51.5, lng: 0.13 },
     // center: { lat: map_center_lat, lng: map_center_long },
     zoom: mapZoom.value,
     // zoom: 5,
@@ -31,7 +40,7 @@ onMounted(async () => {
     },
     options: {
       // gestureHandling: gestureHandling,
-      // gestureHandling: 'greedy'
+      gestureHandling: 'greedy'
     },
     fullscreenControl: true,
     fullscreenControlOptions: {
@@ -53,7 +62,7 @@ onMounted(async () => {
 
     //add a listener for map zoom so we can display airport markers at a certain zoom level
     google.maps.event.addListener(map.value, "zoom_changed", function () {
-      var zoom = map.value.getZoom();
+      let zoom = map.value.getZoom();
 
       if (zoom > 7) {
         airportMarkers.forEach((marker) => {
@@ -66,6 +75,24 @@ onMounted(async () => {
       }
     });
   });
+
+  // await authStore.signup(email.value, password.value, name.value)
+
+  // if (!authStore.error) {
+  //   //success - route to site_details
+  //   $q.notify({
+  //     color: "positive",
+  //     message: `Registration Successful`,
+  //   });
+  //   router.push("/");
+  // } else {
+  //   $q.notify({
+  //     color: "negative",
+  //     message: `${authStore.error}`,
+  //   });
+  //   // invalidLoginMsg.value = error.value + ".  Please try again.";
+  // }
+
 
 
 

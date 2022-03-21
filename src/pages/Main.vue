@@ -24,9 +24,14 @@ import QuotesCarousel from 'src/components/QuotesCarousel.vue';
 // const {flask_data, error, load} = getFlaskData('greeting')
 // load()
 
+import getCollection from '../composables/getCollection';
 import { useAuthStore } from '../store/auth.js'
+
+const {pois} = getCollection('test')
+console.log(pois);
+
+
 const authStore = useAuthStore()
-console.log( authStore.getUsername);
 
 </script>
 

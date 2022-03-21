@@ -66,7 +66,7 @@
               <q-item-section>Airports</q-item-section>
             </q-item>
             <q-item clickable class="GL__menu-link">
-              <q-item-section>Update Account</q-item-section>
+              <q-item-section>Account</q-item-section>
             </q-item>
             <q-item clickable class="GL__menu-link">
               <q-item-section @click="signOutUser">Sign out</q-item-section>
