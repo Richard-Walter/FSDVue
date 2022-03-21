@@ -15,23 +15,15 @@ const mapDiv = ref(null);
 let map = ref(null);
 let clickListener = null;
 
-// const getAirports = async () =>{
-//   let deleteme = false
-//   let response = await fetch("/data/FSD_airports.json");
-//   let airports = await response.json()
-//   console.log(airports);
-//   return airports
-// }
-
-// const airports = getAirports();
+let mapZoom = ref(5);
 
 onMounted(async () => {
   await loader.load();
   map.value = new google.maps.Map(mapDiv.value, {
     center: { lat: -32.344, lng: 154.036 },
     // center: { lat: map_center_lat, lng: map_center_long },
-    // zoom: map_zoom,
-    zoom: 5,
+    zoom: mapZoom.value,
+    // zoom: 5,
 
     restriction: {
       latLngBounds: { north: 85, south: -85, west: -180, east: 180 },
@@ -57,27 +49,29 @@ onMounted(async () => {
     },
   });
 
-  // const myLatLng = { lat: -32.363, lng: 154.044 };
-  // let airport_marker = new google.maps.Marker({
-  //   position: myLatLng,
+  buildAirportMarkers(mapZoom.value).then((airportMarkers) => {
 
-  //   title: "Hello World!",
-  // });
+    //add a listener for map zoom so we can display airport markers at a certain zoom level
+    google.maps.event.addListener(map.value, "zoom_changed", function () {
+      var zoom = map.value.getZoom();
 
-  // const airportMarkers = await buildAirportMarkers()
-  // console.log(airportMarkers);
-  buildAirportMarkers().then((airportMarkers) => {
-    airportMarkers.forEach((marker) => {
-      console.log("adding marker to map");
-      marker.setMap(map.value);
+      if (zoom > 7) {
+        airportMarkers.forEach((marker) => {
+          marker.setMap(map.value);
+        });
+      } else if (zoom <= 7) {
+        airportMarkers.forEach((marker) => {
+          marker.setMap(null);
+        });
+      }
     });
   });
 
-  // airport_marker.setMap(map.value);
 
-  clickListener = map.value.addListener("click", ({ latLng: { lat, lng } }) =>
-    alert(`${lat()},${lng()}`)
-  );
+
+  // clickListener = map.value.addListener("click", ({ latLng: { lat, lng } }) =>
+  //   alert(`${lat()},${lng()}`)
+  // );
 });
 
 onUnmounted(async () => {
