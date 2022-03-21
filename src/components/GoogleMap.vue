@@ -4,14 +4,14 @@
 
 <script setup>
 /* eslint-disable no-undef */
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, onBeforeMount } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
 import { buildAirportMarkers } from "../googleMaps/googleMaps";
 import { usePoisStore } from "../store/pois.js";
-import { useAuthStore } from '../store/auth.js'
+import { useAuthStore } from "../store/auth.js";
 
-const authStore = useAuthStore()
-const poisStore = usePoisStore()
+const authStore = useAuthStore();
+const poisStore = usePoisStore();
 
 const GM_API_KEY = process.env.GM_KEY;
 const loader = new Loader({ apiKey: GM_API_KEY });
@@ -24,9 +24,6 @@ let clickListener = null;
 let mapZoom = ref(5);
 
 onMounted(async () => {
-
-  poisStore.getPoisFromFB()
-
   await loader.load();
   map.value = new google.maps.Map(mapDiv.value, {
     center: { lat: 51.5, lng: 0.13 },
@@ -40,7 +37,7 @@ onMounted(async () => {
     },
     options: {
       // gestureHandling: gestureHandling,
-      gestureHandling: 'greedy'
+      gestureHandling: "greedy",
     },
     fullscreenControl: true,
     fullscreenControlOptions: {
@@ -59,7 +56,6 @@ onMounted(async () => {
   });
 
   buildAirportMarkers(mapZoom.value).then((airportMarkers) => {
-
     //add a listener for map zoom so we can display airport markers at a certain zoom level
     google.maps.event.addListener(map.value, "zoom_changed", function () {
       let zoom = map.value.getZoom();
@@ -75,6 +71,17 @@ onMounted(async () => {
       }
     });
   });
+
+ 
+  // poisStore.getPoisFromFB().then((pois) => {
+
+  //   console.log(pois);
+
+  //   let data = poisStore.pois
+  //   console.log(data['first']);
+  //   console.log(poisStore.pois);
+
+  // });
 
   // await authStore.signup(email.value, password.value, name.value)
 
@@ -92,9 +99,6 @@ onMounted(async () => {
   //   });
   //   // invalidLoginMsg.value = error.value + ".  Please try again.";
   // }
-
-
-
 
   // clickListener = map.value.addListener("click", ({ latLng: { lat, lng } }) =>
   //   alert(`${lat()},${lng()}`)

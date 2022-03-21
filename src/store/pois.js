@@ -3,31 +3,25 @@ import { defineStore } from "pinia";
 // firebase imports
 import { db } from "../firebase/config";
 import { collection, onSnapshot,getDocs, query, where } from "firebase/firestore";
+import { ref } from "vue";
 
 
 export const usePoisStore = defineStore("pois", {
   state: () => ({
-    pois: [],
+    pois: ref([]),
+    isLoading: ref(true),
   }),
   getters: {
     //euqivalent of computed values
     // doubleCount: (state) => state.counter * 2,
-    //   getUsername: (state) => {
-    //     if (state.user){
-    //       return state.user.displayName;
-    //     }
-    //     return 'Unknown'
-    // },
+    getPOIS: (state) => {
+      return pois
+  },
   },
   actions: {
-    async getPoisFromFB() {
-      this.pois = [];
-      const querySnapshot = await getDocs(collection(db, "test"));
-      querySnapshot.forEach((doc) => {
-        let data = doc.data();
-        this.pois.push(data);
-        console.log(data);
-      });
+    setPois(payload) {
+      this.pois = payload;
+      console.log("Pois sotred globally");
     },
   },
 });

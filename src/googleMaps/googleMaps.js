@@ -1,3 +1,7 @@
+import { usePoisStore } from "../store/pois";
+import { db } from "../firebase/config";
+import { collection, onSnapshot,getDocs, query, where } from "firebase/firestore";
+
 export async function buildAirportMarkers() {
   const icon = "/images/marker/ms_airport_marker.png";
   const icon_visited = "/images/marker/ms_airport_marker_visited.png";
@@ -61,7 +65,7 @@ export async function buildAirportMarkers() {
     //add markers to a list so we can add them to the map at a certain zoom range
     airport_markers_list.push(airport_marker);
   }
-  console.log('finshed buuilder marker list byut havent called return');
+
   return airport_markers_list;
   
 }
@@ -71,3 +75,17 @@ const getAirports = async () => {
   let airports = await response.json();
   return airports;
 };
+
+const poisStore = usePoisStore()
+getPoisFromFB()
+
+async function getPoisFromFB() {
+  let pois_list = [];
+  const querySnapshot = await getDocs(collection(db, "test"));
+  querySnapshot.forEach((doc) => {
+    let data = doc.data();
+    pois_list.push(data);
+    console.log(data);
+  });
+  poisStore.setPois(pois_list)
+}
