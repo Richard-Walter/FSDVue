@@ -6,7 +6,7 @@
 /* eslint-disable no-undef */
 import { ref, onMounted, onUnmounted, onBeforeMount } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
-import { buildAirportMarkers, getPoisFromFB } from "../googleMaps/googleMaps";
+import { buildAirportMarkers, getPoisFromFB,get_marker_icon } from "../googleMaps/googleMaps";
 import { usePoisStore } from "../store/pois.js";
 import { useAuthStore } from "../store/auth.js";
 
@@ -73,11 +73,13 @@ onMounted(async () => {
   });
 
   getPoisFromFB().then((pois) => {
-    console.log(pois);
+    // console.log(pois);
     pois.forEach((poi) => {
       let poi_marker = new google.maps.Marker({
         position: { lat: poi.latitude, lng: poi.longitude },
         // icon: icon,
+        icon: get_marker_icon(poi),
+        // icon: get_marker_icon(poi, user_favorites, user_visited, user_pois_list)
         title: poi.name,
       });
       poi_marker.setMap(map.value);
