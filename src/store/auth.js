@@ -8,12 +8,14 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  getAuth
 } from "firebase/auth";
 
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: null,
+    admin: false,
     authIsReady: false,
     isPending: false,
     error: null,
@@ -33,6 +35,13 @@ export const useAuthStore = defineStore("auth", {
     setUser(payload) {
       this.user = payload;
       console.log("user state changed", this.user);
+    },
+    setAdmin(payload) {
+      if (payload==true){
+        this.admin = true;
+        console.log("user is admin", this.user);
+      }
+
     },
     setAuthIsReady(payload) {
       this.authIsReady = payload;
@@ -71,7 +80,15 @@ export const useAuthStore = defineStore("auth", {
           this.error = "Could not sign in.  Please try again later";
           this.isPending = false;
         } else {
-        
+          
+          // check to see if user is an admin
+          const idTokenResult = await getAuth().currentUser.getIdTokenResult()
+     
+            // Confirm the user is an Admin.
+          if (!!idTokenResult.claims.admin) {
+
+              this.setAdmin(true);
+          }
           this.setUser(res.user);
           this.error = null;
           this.isPending = false;
