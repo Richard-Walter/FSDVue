@@ -6,7 +6,7 @@
 /* eslint-disable no-undef */
 import { ref, onMounted, onUnmounted, onBeforeMount } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
-import { buildAirportMarkers } from "../googleMaps/googleMaps";
+import { buildAirportMarkers, getPoisFromFB } from "../googleMaps/googleMaps";
 import { usePoisStore } from "../store/pois.js";
 import { useAuthStore } from "../store/auth.js";
 
@@ -72,37 +72,17 @@ onMounted(async () => {
     });
   });
 
- 
-  // poisStore.getPoisFromFB().then((pois) => {
-
-  //   console.log(pois);
-
-  //   let data = poisStore.pois
-  //   console.log(data['first']);
-  //   console.log(poisStore.pois);
-
-  // });
-
-  // await authStore.signup(email.value, password.value, name.value)
-
-  // if (!authStore.error) {
-  //   //success - route to site_details
-  //   $q.notify({
-  //     color: "positive",
-  //     message: `Registration Successful`,
-  //   });
-  //   router.push("/");
-  // } else {
-  //   $q.notify({
-  //     color: "negative",
-  //     message: `${authStore.error}`,
-  //   });
-  //   // invalidLoginMsg.value = error.value + ".  Please try again.";
-  // }
-
-  // clickListener = map.value.addListener("click", ({ latLng: { lat, lng } }) =>
-  //   alert(`${lat()},${lng()}`)
-  // );
+  getPoisFromFB().then((pois) => {
+    console.log(pois);
+    pois.forEach((poi) => {
+      let poi_marker = new google.maps.Marker({
+        position: { lat: poi.latitude, lng: poi.longitude },
+        // icon: icon,
+        title: poi.name,
+      });
+      poi_marker.setMap(map.value);
+    });
+  });
 });
 
 onUnmounted(async () => {

@@ -77,15 +77,16 @@ const getAirports = async () => {
 };
 
 const poisStore = usePoisStore()
-getPoisFromFB()
+// getPoisFromFB()
 
-async function getPoisFromFB() {
+export async function getPoisFromFB() {
   let pois_list = [];
-  const querySnapshot = await getDocs(collection(db, "test"));
+  const querySnapshot = await getDocs(collection(db, "pois"));
   querySnapshot.forEach((doc) => {
     let data = doc.data();
     pois_list.push(data);
     console.log(data);
   });
   poisStore.setPois(pois_list)
+  return (pois_list)
 }

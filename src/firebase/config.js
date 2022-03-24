@@ -26,7 +26,7 @@ const firebaseConfig = {
 
 // if (location.hostname === 'localhost') {
 if (USE_EMULATOR=== 'True') {
-  connectFirestoreEmulator(db, 'localhost', 8091);
+  connectFirestoreEmulator(db, 'localhost', 8090);
   connectAuthEmulator(auth, "http://localhost:9099");
   // add more services as described in the docs: https://firebase.google.com/docs/emulator-suite/connect_firestore
 }
