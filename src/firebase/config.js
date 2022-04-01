@@ -5,6 +5,7 @@ import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getAuth, connectAuthEmulator  } from 'firebase/auth'
 
 const USE_EMULATOR = process.env.USE_EMULATOR
+const FIRESTORE_EMMULATOR_PORT = process.env.FIRESTORE_EMMULATOR_PORT
 
 const firebaseConfig = {
     apiKey: "AIzaSyB-s0YjEWzPuUjv35k6zTHoyWFL5SS9mUo",
@@ -26,7 +27,7 @@ const firebaseConfig = {
 
 // if (location.hostname === 'localhost') {
 if (USE_EMULATOR=== 'True') {
-  connectFirestoreEmulator(db, 'localhost', 8090);
+  connectFirestoreEmulator(db, 'localhost', FIRESTORE_EMMULATOR_PORT);
   connectAuthEmulator(auth, "http://localhost:9099");
   // add more services as described in the docs: https://firebase.google.com/docs/emulator-suite/connect_firestore
 }
