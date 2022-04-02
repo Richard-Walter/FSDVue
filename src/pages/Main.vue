@@ -14,7 +14,7 @@ import {ref, computed} from 'vue';
 import HomeSlider from '../components/HomeCarousel.vue'
 import HomeSearchBar from '../components/HomeSearchBar.vue';
 import TipsAndTricks from 'src/components/TipsAndTricks.vue';
-import GoogleMap from 'src/components/GoogleMap.vue';
+import GoogleMap from 'src/components/googemaps/GoogleMap.vue';
 import PopularDestinations from 'src/components/PopularDestinations.vue';
 import QuotesCarousel from 'src/components/QuotesCarousel.vue';
 

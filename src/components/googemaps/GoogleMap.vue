@@ -12,11 +12,11 @@ import {
   buildAirportMarkers,
   getPoisFromFB,
   get_marker_icon,
-} from "../googleMaps/googleMaps";
-import { buildPoiInfoWindowContent } from "../googleMaps/infoWindow";
-import { buildCustomControl } from "../googleMaps/customControls";
-import { usePoisStore } from "../store/pois.js";
-import { useAuthStore } from "../store/auth.js";
+} from "../../googleMaps/googleMaps";
+import { buildPoiInfoWindowContent } from "../../googleMaps/infoWindow";
+import { buildCustomControl } from "../../googleMaps/customControls";
+import { usePoisStore } from "../../store/pois.js";
+import { useAuthStore } from "../../store/auth.js";
 
 const authStore = useAuthStore();
 const poisStore = usePoisStore();
