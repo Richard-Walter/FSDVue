@@ -25,7 +25,8 @@ const loader = new Loader({ apiKey: GM_API_KEY });
 
 const mapDiv = ref(null);
 
-let map = reactive(null);
+let map = reactive([]);
+
 let clickListener = null;
 
 //markers
