@@ -28,7 +28,13 @@ export const useAuthStore = defineStore("auth", {
         return state.user.displayName;
       }
       return 'Unknown'
-  },
+    },
+    isSignedIn: (state) => {
+      if (state.user){
+        return true
+      }
+      return false
+    },
     
   },
   actions: {
@@ -45,7 +51,6 @@ export const useAuthStore = defineStore("auth", {
     },
     setAuthIsReady(payload) {
       this.authIsReady = payload;
-      console.log("auth is readyd");
     },
     async signup(email, password, name) {
       this.error = null;
@@ -120,7 +125,7 @@ const authStore = useAuthStore()
 
 // check on startup if user is logged in or not
 const unsub = onAuthStateChanged(auth, (user) => {
-
+  
   authStore.setAuthIsReady(true)
   authStore.setUser(user)
   //we only want to do this once at startup otherwise it will fire when ever a user loggins in or out

@@ -53,16 +53,16 @@
             </q-item>
             <q-separator />
             <q-separator />
-            <q-item clickable to="/poi" exact class="GL__menu-link">
+            <q-item clickable to="/mypois" exact class="GL__menu-link">
               <q-item-section>Points of Interest</q-item-section>
             </q-item>
-            <q-item clickable to="/recorded_flights" class="GL__menu-link">
+            <q-item clickable to="/myrecordedflights" class="GL__menu-link">
               <q-item-section>Recorded Flights</q-item-section>
             </q-item>
-            <q-item clickable to="/flightplans" class="GL__menu-link">
+            <q-item clickable to="/myflightplans" class="GL__menu-link">
               <q-item-section>Flight Plans</q-item-section>
             </q-item>
-            <q-item clickable to="/airports" class="GL__menu-link">
+            <q-item clickable to="/myairports" class="GL__menu-link">
               <q-item-section>Airports</q-item-section>
             </q-item>
             <q-item clickable to="/account" class="GL__menu-link">
