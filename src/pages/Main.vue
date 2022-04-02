@@ -1,7 +1,6 @@
 <template>
   <q-page class="">
-    <HomeSlider />
-    <HomeSearchBar />
+
     <p>Current user is: {{ authStore.getUsername}}</p>
     <TipsAndTricks />
     <GoogleMap />
@@ -30,6 +29,8 @@ import { useAuthStore } from '../store/auth.js'
 // const {pois} = getCollection('test')
 // console.log(pois);
 
+    //<HomeSlider />
+    //<HomeSearchBar />
 
 const authStore = useAuthStore()
 

@@ -1,99 +1,96 @@
 <template>
-  <div ref="mapDiv" style="width: 100%; height: 80vh" />
+  <q-page>
+    <div style="height: calc(100vh - 50px)">
+      <GMapMap
+        ref="myMapRef"
+        :center="center"
+        :zoom="6"
+        map-type-id="terrain"
+        :options="{
+          zoomControl: true,
+          mapTypeControl: true,
+          clickableIcons: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: false,
+          fullscreenControl: true,
+          restriction: {
+            latLngBounds: { north: 85, south: -85, west: -180, east: 180 },
+            strictBounds: true,
+          },
+        }"
+      >
+        <GMapCluster :zoomOnClick="true">
+          <GMapMarker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            :clickable="true"
+            :draggable="true"
+            @click="center = m.position"
+          />
+        </GMapCluster>
+      </GMapMap>
+    </div>
+  </q-page>
 </template>
 
 <script setup>
-/* eslint-disable no-undef */
-import { ref, onMounted, onUnmounted, onBeforeMount } from "vue";
-import { Loader } from "@googlemaps/js-api-loader";
-import { buildAirportMarkers, getPoisFromFB,get_marker_icon } from "../googleMaps/googleMaps";
-import { usePoisStore } from "../store/pois.js";
+import { ref, watch, computed, onMounted } from "vue";
+
 import { useAuthStore } from "../store/auth.js";
+// watch(myMapRef, (googleMap) => {
+//   if (googleMap) {
+//     googleMap.$mapPromise.then((map) => {
+//       heatData.value = [
+//         {
+//           location: new google.maps.LatLng({
+//             lat: 52.2985593,
+//             lng: 104.2455337,
+//           }),
+//         },
+//       ];
+//     });
+//   }
+// });
 
-const authStore = useAuthStore();
-const poisStore = usePoisStore();
-
-const GM_API_KEY = process.env.GM_KEY;
-const loader = new Loader({ apiKey: GM_API_KEY });
-
-const mapDiv = ref(null);
-
-let map = ref(null);
-let clickListener = null;
-
-let mapZoom = ref(5);
-
-onMounted(async () => {
-  await loader.load();
-  map.value = new google.maps.Map(mapDiv.value, {
-    center: { lat: 51.5, lng: 0.13 },
-    // center: { lat: map_center_lat, lng: map_center_long },
-    zoom: mapZoom.value,
-    // zoom: 5,
-
-    restriction: {
-      latLngBounds: { north: 85, south: -85, west: -180, east: 180 },
-      strictBounds: false,
+const myMapRef = ref();
+const center = { lat: 51.093048, lng: 6.84212 };
+const markers = [
+  {
+    position: {
+      lat: 51.093048,
+      lng: 6.84212,
     },
-    options: {
-      // gestureHandling: gestureHandling,
-      gestureHandling: "greedy",
+  },
+  {
+    position: {
+      lat: 51.198429,
+      lng: 6.69529,
     },
-    fullscreenControl: true,
-    fullscreenControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_BOTTOM,
+  },
+  {
+    position: {
+      lat: 51.165218,
+      lng: 7.067116,
     },
-    streetViewControl: false,
-    zoomControl: true,
-    clickableIcons: false,
-    mapTypeControl: true,
-    mapTypeId: "terrain",
-    mapTypeControlOptions: {
-      style: google.maps.MapTypeControlStyle.DEFAULT,
-      position: google.maps.ControlPosition.LEFT_BOTTOM,
-      mapTypeIds: ["roadmap", "terrain", "satellite", "hybrid "],
+  },
+  {
+    position: {
+      lat: 51.09256,
+      lng: 6.84074,
     },
-  });
+  },
+];
 
-  buildAirportMarkers(mapZoom.value).then((airportMarkers) => {
-    //add a listener for map zoom so we can display airport markers at a certain zoom level
-    google.maps.event.addListener(map.value, "zoom_changed", function () {
-      let zoom = map.value.getZoom();
-
-      if (zoom > 7) {
-        airportMarkers.forEach((marker) => {
-          marker.setMap(map.value);
-        });
-      } else if (zoom <= 7) {
-        airportMarkers.forEach((marker) => {
-          marker.setMap(null);
-        });
-      }
-    });
-  });
-
-  getPoisFromFB().then((pois) => {
-    // console.log(pois);
-    pois.forEach((poi) => {
-      let poi_marker = new google.maps.Marker({
-        position: { lat: poi.latitude, lng: poi.longitude },
-        // icon: icon,
-        icon: get_marker_icon(poi),
-        // icon: get_marker_icon(poi, user_favorites, user_visited, user_pois_list)
-        title: poi.name,
-      });
-      poi_marker.setMap(map.value);
-    });
-  });
-});
-
-onUnmounted(async () => {
-  if (clickListener) clickListener.remove();
+onMounted(() => {
+  //console.log(this.$refs.myMapRef);
 });
 </script>
 
 <style lang="scss" scoped>
-.map_container {
-  height: 800px;
+.vue-map-container {
+  height: 85vh;
+  width: 100%;
 }
 </style>
