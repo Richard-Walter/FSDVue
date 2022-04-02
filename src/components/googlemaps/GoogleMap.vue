@@ -1,5 +1,6 @@
 <template>
   <div ref="mapDiv" style="width: 100%; height: 85vh" />
+  <slot></slot> 
 </template>
 
 <script setup>
