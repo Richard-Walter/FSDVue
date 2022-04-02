@@ -7,8 +7,13 @@
 import { ref, reactive, onMounted, onUnmounted, onBeforeMount } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
 
-import MarkerClusterer from '@googlemaps/markerclustererplus';
-import { buildAirportMarkers, getPoisFromFB,get_marker_icon } from "../googleMaps/googleMaps";
+import MarkerClusterer from "@googlemaps/markerclustererplus";
+import {
+  buildAirportMarkers,
+  getPoisFromFB,
+  get_marker_icon,
+} from "../googleMaps/googleMaps";
+import { buildPoiInfoWindowContent } from "../googleMaps/infoWindow";
 import { usePoisStore } from "../store/pois.js";
 import { useAuthStore } from "../store/auth.js";
 
@@ -83,41 +88,46 @@ onMounted(async () => {
   getPoisFromFB().then((pois) => {
     // console.log(pois);
     pois.forEach((poi) => {
-      let poi_marker = new google.maps.Marker({
+      let poiMarker = new google.maps.Marker({
         position: { lat: poi.latitude, lng: poi.longitude },
         // icon: icon,
         icon: get_marker_icon(poi),
         // icon: get_marker_icon(poi, user_favorites, user_visited, user_pois_list)
         title: poi.name,
       });
-      // poi_marker.setMap(map.value);
-      //markerCollection.push(poi_marker)
-      clusterMarkers.push(poi_marker)
-
+      // poiMarker.setMap(map.value);
+      //markerCollection.push(poiMarker)
+      clusterMarkers.push(poiMarker);
 
       //add info window here
-      poi_marker.addListener("click", function (event) {
 
-          alert('hello');
+      poiMarker.addListener("click", function (event) {
+        const iwHTML = buildPoiInfoWindowContent(poi, false);
+        console.log(iwHTML);
+        const infoWindow = new google.maps.InfoWindow({
+          content: iwHTML,
+        });
+
+        infoWindow.open(map, poiMarker);
+
+        google.maps.event.addListener(map, "click", function () {
+          infoWindow.close();
+        });
       });
-
     });
 
     // Marker Clustering
-    markerCluster = new MarkerClusterer(map, clusterMarkers,
-      {
-        maxZoom: 10,
-        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-      });
-
-
+    markerCluster = new MarkerClusterer(map, clusterMarkers, {
+      maxZoom: 10,
+      imagePath:
+        "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+    });
   });
 });
 
 onUnmounted(async () => {
   if (clickListener) clickListener.remove();
 });
-
 </script>
 
 <style lang="scss" scoped>

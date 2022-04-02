@@ -133,34 +133,3 @@ export function get_marker_icon(poi){
     // else:
     //     return normal_marker
 }
-
-// export function get_marker_icon(poi, user_favorites, user_visited, user_pois){
-  export function buildPoiInfoWindow(poi){
-
-    let is_airport = false;
-
-    return normal_marker
-    // if ('Airport' in poi.category) or ('Bush Strip' in poi.category):
-    //     is_airport = True
-    
-    // if poi.id in user_pois:
-    //     if is_airport:
-    //         return user_marker_airport
-    //     else:
-    //         return user_marker
-    // elif poi.id in user_visited:
-    //     if is_airport:
-    //         return visited_marker_airport
-    //     else:
-    //         return visited_marker
-    // elif poi.id in user_favorites:
-    //     if is_airport:
-    //         return favorite_marker_airport
-    //     else:
-    //         return favorite_marker
-    // elif is_airport:
-    //     return airport_marker
-
-    // else:
-    //     return normal_marker
-}
