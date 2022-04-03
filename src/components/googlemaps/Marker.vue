@@ -30,7 +30,7 @@ let clickListener = null;
 
 onMounted(async () => {
   if (props.poi) {
-    // addMarker(props.poi);
+    addMarker(props.poi);
   }
 });
 

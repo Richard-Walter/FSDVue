@@ -15,32 +15,28 @@ const props = defineProps(["airport"]);
 let clickListener = null;
 const { isLoading } = storeToRefs(mapStore);
 
-// onMounted(() => {
-//   if (props.airport) {
-//     addAirportMarker(props.airport);
-//   }
-// });
-watch(isLoading, () => {
-
+onMounted(() => {
   if (props.airport) {
     const airportMarker = buildAirportMarker(props.airport);
-    if (airportMarker) {
-      //airportMarkers.value.push(airportMarker)
-      airportsStore.addAirportMarker(airportMarker)
-    }
+    
+    // if (airportMarker) {
+    //   //airportMarkers.value.push(airportMarker)
+    //   airportsStore.addAirportMarker(airportMarker);
+    // }
   }
-})
+});
+
 
 onUnmounted(async () => {
   if (clickListener) clickListener.remove();
 });
 
 const buildAirportMarker = (airport) => {
-
   const icon = "/images/marker/ms_airport_marker.png";
   const icon_visited = "/images/marker/ms_airport_marker_visited.png";
   const icon_large = "/images/marker/ms_airport_marker_large.png";
-  const icon_visited_large = "/images/marker/ms_airport_marker_visited_large.png";
+  const icon_visited_large =
+    "/images/marker/ms_airport_marker_visited_large.png";
 
   const map = mapStore.map;
   const googlemaps = mapStore.googlemaps;
@@ -81,12 +77,11 @@ const buildAirportMarker = (airport) => {
 
   let airportMarker = new googlemaps.Marker({
     position: { lat: lat, lng: lng },
-    icon:icon,
+    icon: icon,
     title: airport_title,
   });
 
-  return airportMarker
-
-  //airportMarker.setMap(map);
+  airportMarker.setMap(map);
+  //airportsStore.addAirportMarker(airportMarker);
 };
 </script>

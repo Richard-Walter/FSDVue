@@ -22,41 +22,45 @@ const loader = new Loader({ apiKey: GM_API_KEY });
 const mapDiv = ref(null);
 let clickListener = null;
 
-//Iniiliase global store data
+//Initliase global store data
 poiStore.initialisePois();
-airportStore.initialiseAirports();
+airportStore.initialiseAirports().then(()=>{
+
+  console.log('airport initialsation complete');
+
+});
 
 //add global listeners
 const { isLoading } = storeToRefs(mapStore);
 
-watch(isLoading, () => {
-  const map = mapStore.map;
-  const googlemaps = mapStore.googlemaps;
+// watch(isLoading, () => {
+//   const map = mapStore.map;
+//   const googlemaps = mapStore.googlemaps;
 
-  googlemaps.event.addListener(map, "zoom_changed", function () {
-    console.log("zoom change listener called");
+//   googlemaps.event.addListener(map, "zoom_changed", function () {
+//     console.log("zoom change listener called");
 
-    let zoom = map.getZoom();
-    console.log(zoom);
+//     let zoom = map.getZoom();
+//     console.log(zoom);
 
-    if (zoom > 4) {
-      const airportMarkers = getAirportMarkers();
-      console.log(airportMarkers);
-      airportMarkers.forEach((marker) => {
-        // console.log(marker);
-        marker.setMap(map);
-        marker.setVisible(true);
-      });
-    } else if (zoom <= 4) {
-      const airportMarkers = getAirportMarkers();
-      console.log('clearing airport markers');
-      airportMarkers.forEach((marker) => {
-        console.log('clearing marker');
-        marker.setVisible(false);
-      });
-    }
-  });
-});
+//     if (zoom > 4) {
+//       const airportMarkers = getAirportMarkers();
+//       console.log(airportMarkers);
+//       airportMarkers.forEach((marker) => {
+//         // console.log(marker);
+//         marker.setMap(map);
+//         marker.setVisible(true);
+//       });
+//     } else if (zoom <= 4) {
+//       const airportMarkers = getAirportMarkers();
+//       console.log('clearing airport markers');
+//       airportMarkers.forEach((marker) => {
+//         console.log('clearing marker');
+//         marker.setVisible(false);
+//       });
+//     }
+//   });
+// });
 
 function getAirportMarkers() {
   return airportStore.getMarkers;

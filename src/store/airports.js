@@ -6,7 +6,7 @@ import { ref } from "vue";
 export const useAirportsStore = defineStore("airports", {
   state: () => ({
     airports: ref([]),
-    airportMarkers: ref([]),
+    airportMarkers: [],
     isLoading: ref(true),
   }),
   getters: {
@@ -14,16 +14,16 @@ export const useAirportsStore = defineStore("airports", {
   },
   actions: {
     async initialiseAirports() {
-      // this.airports = await getAirports()
-      // this.isLoading = false  
-      // let response = await fetch("/data/FSD_airports.json");
-      let response = await fetch("/data/FSD_airports-small.json");
+
+      let response = await fetch("/data/FSD_airports.json");
+      //let response = await fetch("/data/FSD_airports-small.json");
       this.airports = await response.json();
       this.isLoading = false  
     },
-    addAirportMarker(airportMarker) {
-      this.airportMarkers.push(airportMarker)
-    }
+    // addAirportMarker(airportMarker) {
+    //   console.log('adding ariportmarker to collection');
+    //   this.airportMarkers.push(airportMarker)
+    // }
   },
 });
 
