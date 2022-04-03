@@ -1,4 +1,3 @@
-import { usePoisStore } from "../store/pois";
 import { db } from "../firebase/config";
 import { collection, onSnapshot,getDocs, query, where } from "firebase/firestore";
 
@@ -22,7 +21,7 @@ export async function buildAirportMarkers() {
 
   const airport_markers_list = [];
 
-  let msfs_airports = await getAirports()
+  let msfs_airports = []
 
   for (var i = 0; i < msfs_airports.length; i++) {
     //airport information
@@ -82,25 +81,17 @@ export async function buildAirportMarkers() {
   
 }
 
-const getAirports = async () => {
-  let response = await fetch("/data/FSD_airports.json");
-  let airports = await response.json();
-  return airports;
-};
-
-const poisStore = usePoisStore()
-// getPoisFromFB()
 
 export async function getPoisFromFB() {
-  let pois_list = [];
+  let pois = [];
   const querySnapshot = await getDocs(collection(db, "pois"));
   querySnapshot.forEach((doc) => {
     let data = doc.data();
-    pois_list.push(data);
+    pois.push(data);
     // console.log(data);
   });
-  poisStore.setPois(pois_list)
-  return (pois_list)
+  // poisStore.setPois(pois)
+  return pois
 }
 
 // export function get_marker_icon(poi, user_favorites, user_visited, user_pois){

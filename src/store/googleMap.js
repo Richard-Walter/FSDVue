@@ -1,14 +1,5 @@
 import { defineStore } from "pinia";
 
-// firebase imports
-import { db } from "../firebase/config";
-import {
-  collection,
-  onSnapshot,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
 import { ref } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
 
@@ -19,8 +10,7 @@ export const useGoogleMapStore = defineStore("googleMap", {
     isLoading: ref(true),
   }),
   getters: {
-    //euqivalent of computed values
-    // doubleCount: (state) => state.counter * 2,
+
     getMap: (state) => {
       return state.map;
     },
@@ -62,5 +52,6 @@ export const useGoogleMapStore = defineStore("googleMap", {
       });
       this.isLoading = false
     },
+    
   },
 });
