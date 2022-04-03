@@ -23,9 +23,7 @@ export const useGoogleMapStore = defineStore("googleMap", {
       this.googlemaps = google.maps
       this.map = new google.maps.Map(mapDiv, {
         center: { lat: -33.5, lng: 154 },
-        // center: { lat: map_center_lat, lng: map_center_long },
-        zoom: 5,
-        // zoom: 5,
+        zoom: 3,
 
         restriction: {
           latLngBounds: { north: 85, south: -85, west: -180, east: 180 },

@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
-import { getPoisFromFB} from "../googleMaps/googleMaps"
+//import { getPoisFromFB} from "../googleMaps/googleMaps"
 import { ref } from "vue";
+import { db } from "../firebase/config";
+import { collection, onSnapshot,getDocs, query, where } from "firebase/firestore";
 
 export const usePoisStore = defineStore("pois", {
   state: () => ({
@@ -18,3 +20,15 @@ export const usePoisStore = defineStore("pois", {
     },
   },
 });
+
+const getPoisFromFB = (async ()=>{
+  let pois = [];
+  const querySnapshot = await getDocs(collection(db, "pois"));
+  querySnapshot.forEach((doc) => {
+    let data = doc.data();
+    pois.push(data);
+    // console.log(data);
+  });
+  return pois
+})
+

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "icao": "00AK",
+    "name": "Lowell Field",
+    "city": "Anchor Point",
+    "latitude": 59.94889069,
+    "longitude": -151.692215,
+    "elevation": 252,
+    "tower_frequency": null,
+    "atis_frequency": null,
+    "awos_frequency": null,
+    "asos_frequency": null,
+    "unicom_frequency": null,
+    "Show_on_map": 1,
+    "date_created": "2021-08-23 10:02:15.010280"
+  },
+  {
+    "id": 2,
+    "icao": "00AL",
+    "name": "Epps Airpark",
+    "city": "Harvest",
+    "latitude": 34.86481094,
+    "longitude": -86.77027893,
+    "elevation": 820,
+    "tower_frequency": null,
+    "atis_frequency": null,
+    "awos_frequency": null,
+    "asos_frequency": null,
+    "unicom_frequency": null,
+    "Show_on_map": 1,
+    "date_created": "2021-08-23 10:02:15.010841"
+  }
+]
