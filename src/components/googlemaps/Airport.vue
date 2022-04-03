@@ -6,8 +6,10 @@
 import { storeToRefs } from "pinia";
 import { ref, onMounted, onUnmounted, onBeforeMount, watch } from "vue";
 import { useGoogleMapStore } from "../../store/googleMap.js";
+import { useAirportsStore } from "../../store/airports.js";
 
 const mapStore = useGoogleMapStore();
+const airportsStore = useAirportsStore();
 const props = defineProps(["airport"]);
 
 let clickListener = null;
@@ -19,9 +21,13 @@ const { isLoading } = storeToRefs(mapStore);
 //   }
 // });
 watch(isLoading, () => {
-  console.log('watch called')
+
   if (props.airport) {
-    addAirportMarker(props.airport);
+    const airportMarker = buildAirportMarker(props.airport);
+    if (airportMarker) {
+      //airportMarkers.value.push(airportMarker)
+      airportsStore.addAirportMarker(airportMarker)
+    }
   }
 })
 
@@ -29,9 +35,8 @@ onUnmounted(async () => {
   if (clickListener) clickListener.remove();
 });
 
-const addAirportMarker = (airport) => {
+const buildAirportMarker = (airport) => {
 
-  console.log(airport);
   const icon = "/images/marker/ms_airport_marker.png";
   const icon_visited = "/images/marker/ms_airport_marker_visited.png";
   const icon_large = "/images/marker/ms_airport_marker_large.png";
@@ -39,7 +44,7 @@ const addAirportMarker = (airport) => {
 
   const map = mapStore.map;
   const googlemaps = mapStore.googlemaps;
-  console.log(map, googlemaps);
+  //console.log(map, googlemaps);
 
   let icao = airport["icao"];
   let airport_name = airport["name"];
@@ -80,6 +85,8 @@ const addAirportMarker = (airport) => {
     title: airport_title,
   });
 
-  airportMarker.setMap(map);
+  return airportMarker
+
+  //airportMarker.setMap(map);
 };
 </script>
