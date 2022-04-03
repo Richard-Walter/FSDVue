@@ -14,7 +14,7 @@ import { useAirportsStore } from "../../store/airports.js";
 const mapStore = useGoogleMapStore();
 
 const poiStore = usePoisStore();
-const useAirportStore = useAirportsStore();
+const airportStore = useAirportsStore();
 
 const GM_API_KEY = process.env.GM_KEY;
 const loader = new Loader({ apiKey: GM_API_KEY });
@@ -24,10 +24,10 @@ let clickListener = null;
 
 //Iniiliase global store data
 poiStore.initialisePois();
-useAirportStore.initialiseAirports();
+airportStore.initialiseAirports();
 
 //add global listeners
-const { isLoading } = storeToRefs(useGoogleMapStore);
+const { isLoading } = storeToRefs(mapStore);
 
 watch(isLoading, () => {
   const map = mapStore.map;
@@ -38,22 +38,29 @@ watch(isLoading, () => {
 
     let zoom = map.getZoom();
     console.log(zoom);
-    const airportMarkers = useAirportStore.getMarkers;
-    console.log(airportMarkers);
 
-    if (zoom > 7) {
+    if (zoom > 4) {
+      const airportMarkers = getAirportMarkers();
+      console.log(airportMarkers);
       airportMarkers.forEach((marker) => {
-        console.log(marker);
+        // console.log(marker);
         marker.setMap(map);
+        marker.setVisible(true);
       });
-    } else if (zoom <= 7) {
+    } else if (zoom <= 4) {
+      const airportMarkers = getAirportMarkers();
+      console.log('clearing airport markers');
       airportMarkers.forEach((marker) => {
-        marker.setMap(null);
+        console.log('clearing marker');
+        marker.setVisible(false);
       });
     }
   });
 });
 
+function getAirportMarkers() {
+  return airportStore.getMarkers;
+}
 onMounted(async () => {
   mapStore.createMap(mapDiv.value);
 });
