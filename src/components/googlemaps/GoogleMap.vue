@@ -13,7 +13,6 @@ import {
   //getPoisFromFB,
   get_marker_icon,
 } from "../../googleMaps/googleMaps";
-import { buildPoiInfoWindowContent } from "../../googleMaps/infoWindow";
 import { buildCustomControl } from "../../googleMaps/customControls";
 import { usePoisStore } from "../../store/pois.js";
 import { useAuthStore } from "../../store/auth.js";
@@ -100,7 +99,8 @@ onMounted(async () => {
 
   //build markers and cluster them
   poisStore.getPoisFromFB().then(async (pois) => {
-    const poiIWHTML = await vueTemplateToString()
+    const src = '/html/InfowindowPOI.html'
+    const poiIWHTML = await vueTemplateToString(src)
     console.log(poiIWHTML);
     pois.forEach((poi) => {
       let poiMarker = new google.maps.Marker({
