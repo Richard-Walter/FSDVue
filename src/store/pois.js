@@ -21,27 +21,20 @@ export const usePoisStore = defineStore("pois", {
     //   this.poiIWHTML = poiIWHTML      
     //   this.isLoading = false
     // },
-
+      async getPoisFromFB(){
+      let pois = [];
+      const querySnapshot = await getDocs(collection(db, "pois"));
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        pois.push(data);
+        // console.log(data);
+      });
+      this.pois = pois
+      return pois
+    }
+    
 
   },
 });
 
-const getPoisFromFB = (async ()=>{
-  let pois = [];
-  const querySnapshot = await getDocs(collection(db, "pois"));
-  querySnapshot.forEach((doc) => {
-    let data = doc.data();
-    pois.push(data);
-    // console.log(data);
-  });
-  return pois
-})
 
-const vueTemplateToString = (async ()=>{
-
-  const src = '/html/InfowindowPOI.html'
-  const response = await fetch(src);
-  const html = await response.text()
-  console.log(html);
-  return html
-})

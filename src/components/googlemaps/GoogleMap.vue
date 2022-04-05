@@ -10,7 +10,7 @@ import { Loader } from "@googlemaps/js-api-loader";
 import MarkerClusterer from "@googlemaps/markerclustererplus";
 import {
   buildAirportMarkers,
-  getPoisFromFB,
+  //getPoisFromFB,
   get_marker_icon,
 } from "../../googleMaps/googleMaps";
 import { buildPoiInfoWindowContent } from "../../googleMaps/infoWindow";
@@ -99,7 +99,7 @@ onMounted(async () => {
 
 
   //build markers and cluster them
-  getPoisFromFB().then(async (pois) => {
+  poisStore.getPoisFromFB().then(async (pois) => {
     const poiIWHTML = await vueTemplateToString()
     console.log(poiIWHTML);
     pois.forEach((poi) => {

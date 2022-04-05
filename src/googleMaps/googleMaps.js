@@ -88,20 +88,20 @@ const getAirports = async () => {
   return airports;
 };
 
-const poisStore = usePoisStore()
-// getPoisFromFB()
+// const poisStore = usePoisStore()
+// // getPoisFromFB()
 
-export async function getPoisFromFB() {
-  let pois_list = [];
-  const querySnapshot = await getDocs(collection(db, "pois"));
-  querySnapshot.forEach((doc) => {
-    let data = doc.data();
-    pois_list.push(data);
-    // console.log(data);
-  });
-  poisStore.pois.value =pois_list
-  return (pois_list)
-}
+// export async function getPoisFromFB() {
+//   let pois_list = [];
+//   const querySnapshot = await getDocs(collection(db, "pois"));
+//   querySnapshot.forEach((doc) => {
+//     let data = doc.data();
+//     pois_list.push(data);
+//     // console.log(data);
+//   });
+//   poisStore.pois.value =pois_list
+//   return (pois_list)
+// }
 
 // export function get_marker_icon(poi, user_favorites, user_visited, user_pois){
 export function get_marker_icon(poi){
