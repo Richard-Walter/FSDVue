@@ -3,7 +3,7 @@
 
     <p>Current user is: {{ authStore.getUsername}}</p>
     <TipsAndTricks />
-    <GoogleMapContainer />
+    <GoogleMap />
     <PopularDestinations />
     <QuotesCarousel />
   </q-page>
@@ -14,7 +14,7 @@ import {ref, computed} from 'vue';
 import HomeSlider from '../components/HomeCarousel.vue'
 import HomeSearchBar from '../components/HomeSearchBar.vue';
 import TipsAndTricks from 'src/components/TipsAndTricks.vue';
-import GoogleMapContainer from 'src/components/googlemaps/GoogleMapContainer.vue';
+import GoogleMap from 'src/components/googlemaps/GoogleMap.vue';
 import PopularDestinations from 'src/components/PopularDestinations.vue';
 import QuotesCarousel from 'src/components/QuotesCarousel.vue';
 

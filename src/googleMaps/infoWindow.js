@@ -3,7 +3,7 @@
     console.log(poi);
     const rating = 9
     const HTMLContent = [
-    "<head><link rel='stylesheet' href='static/css/style.css'/></head>",
+    "<head><link rel='stylesheet' href='/css/googlemap.css'/></head>",
 
     "<div class='gm-style-iw' id='iw-container'>",
 
@@ -91,6 +91,6 @@
     // '</div>' ,
     // '</div>'
   ].join('');
-
+  console.log(HTMLContent);
   return HTMLContent;
 }

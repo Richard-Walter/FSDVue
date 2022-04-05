@@ -99,7 +99,7 @@ export async function getPoisFromFB() {
     pois_list.push(data);
     // console.log(data);
   });
-  poisStore.setPois(pois_list)
+  poisStore.pois.value =pois_list
   return (pois_list)
 }
 
