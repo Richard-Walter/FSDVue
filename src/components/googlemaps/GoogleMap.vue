@@ -17,7 +17,8 @@ import { buildPoiInfoWindowContent } from "../../googleMaps/infoWindow";
 import { buildCustomControl } from "../../googleMaps/customControls";
 import { usePoisStore } from "../../store/pois.js";
 import { useAuthStore } from "../../store/auth.js";
-import { vueTemplateToString } from "../../utilities/HTMLParser.js";
+import { vueTemplateToString } from "../../utilities/HTMLParser";
+
 
 
 const authStore = useAuthStore();
@@ -38,6 +39,10 @@ let markerCluster = null;
 let clusterMarkers = [];
 
 let mapZoom = ref(5);
+
+// onBeforeMount(async () => {
+//   await poisStore.initialisePois()
+// })
 
 onMounted(async () => {
   await loader.load();
@@ -92,9 +97,11 @@ onMounted(async () => {
     });
   });
 
+
   //build markers and cluster them
-  getPoisFromFB().then((pois) => {
-    // console.log(pois);
+  getPoisFromFB().then(async (pois) => {
+    const poiIWHTML = await vueTemplateToString()
+    console.log(poiIWHTML);
     pois.forEach((poi) => {
       let poiMarker = new google.maps.Marker({
         position: { lat: poi.latitude, lng: poi.longitude },
@@ -110,11 +117,11 @@ onMounted(async () => {
       //add info window here
 
       poiMarker.addListener("click", function (event) {
-        vueTemplateToString()
-        const iwHTML = buildPoiInfoWindowContent(poi, false);
-        //console.log(iwHTML);
+
+        console.log(poiIWHTML);
         const infoWindow = new google.maps.InfoWindow({
-          content: iwHTML,
+          
+          content: poiIWHTML
         });
 
         infoWindow.open(map, poiMarker);
@@ -133,6 +140,7 @@ onMounted(async () => {
     });
   });
 });
+
 
 onUnmounted(async () => {
   if (clickListener) clickListener.remove();

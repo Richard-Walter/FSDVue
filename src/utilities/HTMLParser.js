@@ -1,9 +1,9 @@
-export async function vueTemplateToString(src) {
-  
-    src = '/html/InfowindowPOI.html'
+export async function vueTemplateToString() {
+    
+    const src = '/html/InfowindowPOI.html'
     const response = await fetch(src);
-    const data = await response.text();
-    console.log(data);
-    return data
-  }
+    const html = await response.text()
+    console.log(html);
+    return html
+}
   

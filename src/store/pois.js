@@ -8,16 +8,21 @@ export const usePoisStore = defineStore("pois", {
   state: () => ({
     pois: ref([]),
     isLoading: ref(true),
+    poiIWHTML: ref(''),
   }),
   getters: {
-
+    getPOIIWHTML: (state) => state.poiIWHTML,
   },
   actions: {
-    async initialisePois() {
-      const pois = await getPoisFromFB()
-      this.pois = pois      
-      this.isLoading = false
-    },
+    // async initialisePois() {
+    //   const pois = await getPoisFromFB()
+    //   const poiIWHTML = await vueTemplateToString()
+    //   this.pois = pois      
+    //   this.poiIWHTML = poiIWHTML      
+    //   this.isLoading = false
+    // },
+
+
   },
 });
 
@@ -32,3 +37,11 @@ const getPoisFromFB = (async ()=>{
   return pois
 })
 
+const vueTemplateToString = (async ()=>{
+
+  const src = '/html/InfowindowPOI.html'
+  const response = await fetch(src);
+  const html = await response.text()
+  console.log(html);
+  return html
+})
