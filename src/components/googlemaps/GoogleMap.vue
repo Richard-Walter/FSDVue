@@ -100,7 +100,7 @@ onMounted(async () => {
   //build markers and cluster them
   poisStore.getPoisFromFB().then(async (pois) => {
     const src = '/html/InfowindowPOI.html'
-    const poiIWHTML = await vueTemplateToString(src)
+    const poiIWHTML = await vueTemplateToString(src, {poiID:1, poiName:'belligen', poiCountry: 'Australia', poiLongitude:-34, poiLatitude:153, poiAltitude:100, hiddenDetails:'', defaultsAirportsIWHTML:'test'})
     console.log(poiIWHTML);
     pois.forEach((poi) => {
       let poiMarker = new google.maps.Marker({
