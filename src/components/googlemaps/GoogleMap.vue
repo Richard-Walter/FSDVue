@@ -16,9 +16,10 @@ import {
 import { buildCustomControl } from "../../googleMaps/customControls";
 import { usePoisStore } from "../../store/pois.js";
 import { useAuthStore } from "../../store/auth.js";
-import { vueTemplateToString } from "../../utilities/HTMLParser";
-
-
+import {
+  vueTemplateToString,
+  getVueTemplateAsString,
+} from "../../utilities/HTMLParser";
 
 const authStore = useAuthStore();
 const poisStore = usePoisStore();
@@ -96,12 +97,12 @@ onMounted(async () => {
     });
   });
 
-
   //build markers and cluster them
   poisStore.getPoisFromFB().then(async (pois) => {
-    const src = '/html/InfowindowPOI.html'
-    const poiIWHTML = await vueTemplateToString(src, {poiID:1, poiName:'belligen', poiCountry: 'Australia', poiLongitude:-34, poiLatitude:153, poiAltitude:100, hiddenDetails:'', defaultsAirportsIWHTML:'test'})
-    console.log(poiIWHTML);
+    const src = "/html/InfowindowPOI.html";
+    const htmlTemplate = await getVueTemplateAsString(src);
+    //console.log(poiIWHTML);
+
     pois.forEach((poi) => {
       let poiMarker = new google.maps.Marker({
         position: { lat: poi.latitude, lng: poi.longitude },
@@ -117,11 +118,18 @@ onMounted(async () => {
       //add info window here
 
       poiMarker.addListener("click", function (event) {
+        const poiIWHTML = vueTemplateToString(htmlTemplate, {
+          poiID: poi.id,
+          poiName: poi.name,
+          poiCountry: poi.country,
+          poiLongitude: poi.longitude,
+          poiLatitude: poi.latitude,
+          poiAltitude: poi.altitude,
+          poiCategory: poi.category,
+        });
 
-        console.log(poiIWHTML);
         const infoWindow = new google.maps.InfoWindow({
-          
-          content: poiIWHTML
+          content: poiIWHTML,
         });
 
         infoWindow.open(map, poiMarker);
@@ -141,7 +149,6 @@ onMounted(async () => {
   });
 });
 
-
 onUnmounted(async () => {
   if (clickListener) clickListener.remove();
 });
@@ -151,6 +158,4 @@ onUnmounted(async () => {
 .map_container {
   height: 800px;
 }
-
 </style>
-

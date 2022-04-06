@@ -1,20 +1,18 @@
-export async function vueTemplateToString(src, varDict) {
-
-  //console.log(varDict);
-
-
-  const response = await fetch(src);
-  let html = await response.text();
-
-  //console.log("pre-parse", html);
-
+export function vueTemplateToString(htmlTemplate, varDict) {
   for (const [key, value] of Object.entries(varDict)) {
     console.log(key, value);
-    let search = `{{${key}}}`
-    html = (html.replaceAll(search, value))
+    let search = `{{${key}}}`;
+    htmlTemplate = htmlTemplate.replaceAll(search, value);
   }
-  console.log('###############################');
-  console.log(html);
+  console.log("###############################");
+  console.log(htmlTemplate);
+
+  return htmlTemplate;
+}
+
+export async function getVueTemplateAsString(src) {
+  const response = await fetch(src);
+  let html = await response.text();
 
   return html;
 }
