@@ -108,7 +108,6 @@ onMounted(async () => {
     const userPoisVisited = poisVisited.filter((poi)=>{
       return poi.user_id == authStore.getUserID
     })
-    console.log(userPoisVisited);
 
     const src = "/html/InfowindowPOI.html";
     const htmlTemplate = await getVueTemplateAsString(src);
@@ -129,7 +128,6 @@ onMounted(async () => {
       //add info window here
 
       poiMarker.addListener("click", function (event) {
-        console.log(getVisitedCheckIcon(poi.id, userPoisVisited))
         const poiIWHTML = vueTemplateToString(htmlTemplate, {
           poiID: poi.id,
           poiName: poi.name,

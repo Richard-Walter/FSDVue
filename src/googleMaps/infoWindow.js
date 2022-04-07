@@ -51,7 +51,6 @@ export function getVisitedCheckIcon(poiID, userVisitedPois){
 
     for(let i = 0; i < userVisitedPois.length; i++) {
       if (userVisitedPois[i].poi_id == poiID) {
-        console.log('we have a match ', poiID);
         return 'fa-check-square-o';
       }
     }
