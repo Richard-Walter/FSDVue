@@ -21,7 +21,7 @@ export function getIWIconsHTML(latitude, longitude, marker_name, country, cateog
       wikiHTML +
       '<a href="https://www.youtube.com/results?search_query=' + marker_name + ', ' + country + '" target="_blank" class="fa fai fa-youtube" title="Youtube"></a>'+
       skyvectorHTML +
-    //   '<i id="copyCoordsIcon" class="fas fai fa-map-marker" title="Copy coordinates" onclick="copyLatLon()" style="cursor:pointer"></i>'+
+    //   '<i id="copyCoordsIcon" class="fa fai fa-map-marker-alt" title="Copy coordinates" onclick="copyLatLon()" style="cursor:pointer"></i>'+
     //   '<p id="coordsCopiedTXT" class="my-0" style="font-size: 0.8em; display:none" >Coorindates copied: ' + latitude + ', ' + longitude + '</p>' +
     //   '<input type="hidden" id="poiLatLong" name="poiLatLong" value="' + latitude + ', ' + longitude + '">' +
       '</div>'
