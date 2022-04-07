@@ -80,7 +80,7 @@ onMounted(async () => {
 
   const centerControlDiv = document.createElement("div");
   buildCustomControl(centerControlDiv, map);
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
   buildAirportMarkers(mapZoom.value).then((airportMarkers) => {
     //add a listener for map zoom so we can display airport markers at a certain zoom level
