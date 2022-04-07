@@ -1,4 +1,5 @@
 <head>
+  <script src="/js/googleMapFunctions.js"></script>
 </head>
 <div class="gm-style-iw" id="iw-container">
   <div class="iw-poi_header">
@@ -142,7 +143,7 @@
       class="iw_update_poi"
       style="cursor: pointer"
       href="#"
-      onclick="{infowindow.close();iw_update_poi({{id}})}"
+      onclick="{iw_update_poi({{poiID}})}"
       ><i
         id="iw_image_update_poi"
         class="fa fai fa-edit fa-lg fa-fw"
@@ -181,3 +182,4 @@
     ></a>
   </div>
 </div>
+
