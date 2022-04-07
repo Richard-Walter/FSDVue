@@ -14,7 +14,7 @@ import {
   buildAirportMarkers,
   get_marker_icon,
 } from "../../googleMaps/googleMaps";
-import { getIWIconsHTML } from "../../googleMaps/infoWindow.js";
+import { getIWIconsHTML, getVisitedCheckIcon } from "../../googleMaps/infoWindow.js";
 import { buildCustomControl } from "../../googleMaps/customControls";
 import { usePoisStore } from "../../store/pois.js";
 import { useAuthStore } from "../../store/auth.js";
@@ -105,10 +105,10 @@ onMounted(async () => {
   
     const pois = data[0]
     const poisVisited = data[1]
-    const userPoisVisied = poisVisited.filter((poi)=>{
-      return poi.user_id == null
+    const userPoisVisited = poisVisited.filter((poi)=>{
+      return poi.user_id == authStore.getUserID
     })
-    console.log(userPoisVisied);
+    console.log(userPoisVisited);
 
     const src = "/html/InfowindowPOI.html";
     const htmlTemplate = await getVueTemplateAsString(src);
@@ -129,6 +129,7 @@ onMounted(async () => {
       //add info window here
 
       poiMarker.addListener("click", function (event) {
+        console.log(getVisitedCheckIcon(poi.id, userPoisVisited))
         const poiIWHTML = vueTemplateToString(htmlTemplate, {
           poiID: poi.id,
           poiName: poi.name,
@@ -138,7 +139,7 @@ onMounted(async () => {
           poiAltitude: poi.altitude,
           poiCategory: poi.category,
           poiDescription: poi.description,
-          visitedCheck:'fa-check-square-o',
+          visitedCheck:getVisitedCheckIcon(poi.id, userPoisVisited),
           iwIconsHTML: getIWIconsHTML(
             poi.latitude,
             poi.longitude,

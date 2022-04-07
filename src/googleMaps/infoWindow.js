@@ -1,33 +1,61 @@
-export function getIWIconsHTML(latitude, longitude, marker_name, country, cateogry, nearest_icao) {
-  
+export function getIWIconsHTML(
+  latitude,
+  longitude,
+  marker_name,
+  country,
+  cateogry,
+  nearest_icao
+) {
+  let skyvectorHTML = "";
+  let wikiHTML = "";
 
-      let skyvectorHTML = '';
-      let wikiHTML = '';
-    
-      if ((cateogry.includes('Airport'))&&(nearest_icao))  {
-        skyvectorHTML = '<a href="https://skyvector.com/airport/' + nearest_icao + '" target="_blank" class="fa fai fai-plane fa-plane" title="Skyvector"></a>'
-      }
-    
-      if (cateogry.includes('Airport')) {
-        wikiHTML = '';
-      } else {
-        wikiHTML = '<a href="https://en.wikipedia.org/wiki/' + marker_name + '" target="_blank" class="fa fai  fa-wikipedia-w" title="Wikipedia"></a>';
-      }
-    
-      let iwIconsHTML = 
-      '<div class="my-1 border border-seconday ">' +
-    
-      '<a href="https://www.google.com/search?q=' + marker_name + ', ' + country + '" target="_blank" class="fa fai  fa-google" title="Google"></a>'+
-      wikiHTML +
-      '<a href="https://www.youtube.com/results?search_query=' + marker_name + ', ' + country + '" target="_blank" class="fa fai fa-youtube" title="Youtube"></a>'+
-      skyvectorHTML +
+  if (cateogry.includes("Airport") && nearest_icao) {
+    skyvectorHTML =
+      '<a href="https://skyvector.com/airport/' +
+      nearest_icao +
+      '" target="_blank" class="fa fai fai-plane fa-plane" title="Skyvector"></a>';
+  }
+
+  if (cateogry.includes("Airport")) {
+    wikiHTML = "";
+  } else {
+    wikiHTML =
+      '<a href="https://en.wikipedia.org/wiki/' +
+      marker_name +
+      '" target="_blank" class="fa fai  fa-wikipedia-w" title="Wikipedia"></a>';
+  }
+
+  let iwIconsHTML =
+    '<div class="my-1 border border-seconday ">' +
+    '<a href="https://www.google.com/search?q=' +
+    marker_name +
+    ", " +
+    country +
+    '" target="_blank" class="fa fai  fa-google" title="Google"></a>' +
+    wikiHTML +
+    '<a href="https://www.youtube.com/results?search_query=' +
+    marker_name +
+    ", " +
+    country +
+    '" target="_blank" class="fa fai fa-youtube" title="Youtube"></a>' +
+    skyvectorHTML +
     //   '<i id="copyCoordsIcon" class="fa fai fa-map-marker-alt" title="Copy coordinates" onclick="copyLatLon()" style="cursor:pointer"></i>'+
     //   '<p id="coordsCopiedTXT" class="my-0" style="font-size: 0.8em; display:none" >Coorindates copied: ' + latitude + ', ' + longitude + '</p>' +
     //   '<input type="hidden" id="poiLatLong" name="poiLatLong" value="' + latitude + ', ' + longitude + '">' +
-      '</div>'
-    
-      return iwIconsHTML
+    "</div>";
 
+  return iwIconsHTML;
+}
 
+export function getVisitedCheckIcon(poiID, userVisitedPois){
 
+    for(let i = 0; i < userVisitedPois.length; i++) {
+      if (userVisitedPois[i].poi_id == poiID) {
+        console.log('we have a match ', poiID);
+        return 'fa-check-square-o';
+      }
     }
+    return 'fa-square-o';
+  };
+
+
