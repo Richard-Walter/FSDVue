@@ -4,7 +4,7 @@ a {
   color: #001d38;
 }
 
-hr {
+/* hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
@@ -27,7 +27,7 @@ h5 {
   font-size: 14px;
   line-height: 0.2em;
   font-weight: 500;
-}
+} */
 
 p {
   font-size: 16px;

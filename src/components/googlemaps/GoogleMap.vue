@@ -13,8 +13,9 @@ import MarkerClusterer from "@googlemaps/markerclustererplus";
 import {
   buildAirportMarkers,
   get_marker_icon,
+  
 } from "../../googleMaps/googleMaps";
-import { getIWIconsHTML, getVisitedCheckIcon } from "../../googleMaps/infoWindow.js";
+import { getIWIconsHTML, getVisitedCheckIcon, getFavCheckIcon } from "../../googleMaps/infoWindow.js";
 import { buildCustomControl } from "../../googleMaps/customControls";
 import { usePoisStore } from "../../store/pois.js";
 import { useAuthStore } from "../../store/auth.js";
@@ -99,13 +100,17 @@ onMounted(async () => {
   });
 
   //Get all required data to build info window
-  const iwPromises = [poisStore.getPois(), poisStore.getPoisVisited()];
+  const iwPromises = [poisStore.getPois(), poisStore.getPoisVisited(), poisStore.getPoisFav()];
   Promise.all(iwPromises)
   .then(async (data) => {
   
     const pois = data[0]
     const poisVisited = data[1]
+    const poisFav = data[2]
     const userPoisVisited = poisVisited.filter((poi)=>{
+      return poi.user_id == authStore.getUserID
+    })
+    const userPoisFav = poisFav.filter((poi)=>{
       return poi.user_id == authStore.getUserID
     })
 
@@ -138,6 +143,7 @@ onMounted(async () => {
           poiCategory: poi.category,
           poiDescription: poi.description,
           visitedCheck:getVisitedCheckIcon(poi.id, userPoisVisited),
+          favoriteCheck:getFavCheckIcon(poi.id, userPoisVisited),
           iwIconsHTML: getIWIconsHTML(
             poi.latitude,
             poi.longitude,

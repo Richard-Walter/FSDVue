@@ -8,9 +8,9 @@
         href="https://www.google.com/search?q={{poiName}} {{poiCountry}}"
         target="_blank"
       >
-        <h3 id="firstHeading">{{poiName}}</h3>
-        <h4 id="categoryHeading" style="font-style: italic">{{poiCategory}}</h4>
-        <h5 id="categoryHeading">Elevation: {{poiAltitude}}ft</h5>
+        <h4 id="firstHeading">{{poiName}}</h4>
+        <h5 id="categoryHeading" style="font-style: italic">{{poiCategory}}</h5>
+        <h6 id="categoryHeading">Elevation: {{poiAltitude}}ft</h6>
       </a>
     </div>
     <div class="mb-1">
@@ -85,7 +85,7 @@
       </div>
     </div>
     <div class="iw_header_fas_icons" {{hiddenDetails}}>
-      <a style="cursor: pointer" onclick="iw_update_visited({{id}})"
+      <a style="cursor: pointer" onclick="iw_update_visited({{poiID}})"
         ><i
           id="iw_icon_visited"
           class="fa {{visitedCheck}} fa-fw fa-lg"
@@ -96,7 +96,7 @@
       <a style="cursor: pointer" onclick="iw_update_favorite({{id}})"
         ><i
           id="iw_icon_fav"
-          class="{{favoriteCheck}} fa-heart fa-fw fa-lg"
+          class="fa {{favoriteCheck}} fa-fw fa-lg"
           title="favorite"
           style="color: #9e0808"
         ></i
@@ -137,6 +137,10 @@
         Remove from Flight Plan
       </button>
     </div>
+    <div >
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+      </button>
   </div>
   <div class="iw_update_delete_fas_icons" {{hiddenButtons}}>
     <a

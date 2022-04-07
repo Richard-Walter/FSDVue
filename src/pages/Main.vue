@@ -4,9 +4,11 @@
     <p>Current user is: {{ authStore.getUsername}}</p>
     <TipsAndTricks />
     <GoogleMap />
+    <GoogleMapModals/>
     <PopularDestinations />
     <QuotesCarousel />
   </q-page>
+
 </template>
 
 <script setup>
@@ -15,6 +17,7 @@ import HomeSlider from '../components/HomeCarousel.vue'
 import HomeSearchBar from '../components/HomeSearchBar.vue';
 import TipsAndTricks from 'src/components/TipsAndTricks.vue';
 import GoogleMap from 'src/components/googlemaps/GoogleMap.vue';
+import GoogleMapModals from 'src/components/googlemaps/GoogleMapModals.vue';
 import PopularDestinations from 'src/components/PopularDestinations.vue';
 import QuotesCarousel from 'src/components/QuotesCarousel.vue';
 

@@ -47,14 +47,20 @@ export function getIWIconsHTML(
   return iwIconsHTML;
 }
 
-export function getVisitedCheckIcon(poiID, userVisitedPois){
-
-    for(let i = 0; i < userVisitedPois.length; i++) {
-      if (userVisitedPois[i].poi_id == poiID) {
-        return 'fa-check-square-o';
-      }
+export function getVisitedCheckIcon(poiID, userVisitedPois) {
+  for (let i = 0; i < userVisitedPois.length; i++) {
+    if (userVisitedPois[i].poi_id == poiID) {
+      return "fa-check-square-o";
     }
-    return 'fa-square-o';
-  };
+  }
+  return "fa-square-o";
+}
 
-
+export function getFavCheckIcon(poiID, userFavPois) {
+  for (let i = 0; i < userFavPois.length; i++) {
+    if (userFavPois[i].poi_id == poiID) {
+      return "fa-heart";
+    }
+  }
+  return "fa-heart-o";
+}
