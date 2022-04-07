@@ -1,5 +1,7 @@
 <template>
+<link rel="stylesheet" href="/css/googlemap.css" />
   <div ref="mapDiv" style="width: 100%; height: 80vh" />
+  
 </template>
 
 <script setup>
