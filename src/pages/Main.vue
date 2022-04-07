@@ -3,6 +3,7 @@
 
     <p>Current user is: {{ authStore.getUsername}}</p>
     <TipsAndTricks />
+       <ActiveFlightBar/>
     <GoogleMap />
     <GoogleMapModals/>
     <PopularDestinations />
@@ -20,6 +21,7 @@ import GoogleMap from 'src/components/googlemaps/GoogleMap.vue';
 import GoogleMapModals from 'src/components/googlemaps/GoogleMapModals.vue';
 import PopularDestinations from 'src/components/PopularDestinations.vue';
 import QuotesCarousel from 'src/components/QuotesCarousel.vue';
+import ActiveFlightBar from 'src/components/ActiveFlightBar.vue';
 
 // import getFlaskData from 'src/composables/getFlaskData';
 // const flaskGreeting = ref("")
