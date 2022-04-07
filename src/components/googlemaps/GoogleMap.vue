@@ -126,6 +126,7 @@ onMounted(async () => {
           poiLatitude: poi.latitude,
           poiAltitude: poi.altitude,
           poiCategory: poi.category,
+          poiDescription: poi.description
         });
 
         const infoWindow = new google.maps.InfoWindow({

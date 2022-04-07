@@ -1,43 +1,85 @@
+/* ROOT STYLES */
+a {
+  text-decoration: none !important;
+  color: #001D38;
+}
+
+hr {
+
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+
+
+}
+h3 {
+  font-size: 24px;
+  line-height: 0.5em;
+  font-weight: bold;
+}
+
+h4 {
+
+  font-size: 18px;
+  line-height: 0.5em;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 14px;
+  line-height: 0.2em;
+  font-weight: 500;
+
+}
+
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #7A838B;
+  margin-bottom: 0px;
+  font-family: "Rubik", sans-serif;
+}
+
+button {
+
+  display: inline-block;
+  cursor: pointer;
+  
+  padding: 0.3em 1.2em;
+  margin: 0 0.1em 0.1em 0;
+  border: 0.16em solid rgba(255, 255, 255, 0);
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+
+  text-align: center;
+  transition: all 0.2s;
+
+}
+
+button:hover{
+  filter: brightness(0.85);
+}
+
 .gm-style-iw {
-    background-color:  rgb(255, 255, 255);
-    border-radius: 2px;
-    color: rgb(255, 255, 255) !important;
-    font-family: "Georgia", "Open Sans", Sans-serif;
-    text-align: center;
-    /* margin: 15px auto; */
-    /* width: 100% !important; */
-    /* width: 400px; */
-    max-width: 400px;
-    left: 0 !important;
-
+  background-color: rgb(255, 255, 255);
+  border-radius: 2px;
+  color: rgb(255, 255, 255) !important;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  max-width: 400px;
+  left: 0 !important;
 }
 
-.iw_header_fas_icons{
-  margin-left: 10px;
-  position: absolute;
-  top: 23px;
-  right: 20px;
-}
-
-.iw_update_delete_fas_icons{
-  margin-left: 10px;
-  position: absolute;
-  bottom: 24px;
-  right: 20px;
-}
-
-.iw_flag_icon{
-  margin-right: 10px;
-  position: absolute;
-  bottom: 24px;
-  left: 15px;
-
-}
-
-#iw-container  .iw-poi_header {
-  font-family: "Georgia", "Open Sans", Sans-serif;
-  /* font-size: 14px; */
-  /* font-weight: 400; */
+.iw-poi_header {
+  font-family: "Roboto", sans-serif;
   padding-right: 50px;
   padding-left: 50px;
   padding-top: 5px;
@@ -45,42 +87,64 @@
   background-color: #458a45;
   opacity: 0.9;
   color: white;
-  /* margin: 1px; */
   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
 }
+
+.iw_rating_text {
+
+  color: #313131;
+}
+
+
+.iw_header_fas_icons {
+  margin-left: 10px;
+  position: absolute;
+  top: 23px;
+  right: 20px;
+}
+
+.iw_update_delete_fas_icons {
+  margin-left: 10px;
+  position: absolute;
+  bottom: 24px;
+  right: 20px;
+}
+
+.iw_flag_icon {
+  margin-right: 10px;
+  position: absolute;
+  bottom: 24px;
+  left: 15px;
+}
+
+
 
 .iw-ap_header {
   background-color: #a8cfd6 !important;
 }
 
-
 .iw_copy_latlng {
-  background-color:  rgb(240, 240, 240);
+  background-color: rgb(240, 240, 240);
 }
 
 .iw-rating {
-  background-color:  rgb(211, 210, 210);
+  background-color: rgb(211, 210, 210);
 }
 
-.iw_latlng{
+.iw_latlng {
   font-size: 12px;
 }
 
-.iw_rating_text{
-  font-family: "Rubik", "sans-serif";
-  color: #313131;
-}
-.iw_description{
 
+.iw_description {
   font-size: 13px !important;
   text-align: justify !important;
   text-justify: auto !important;
 }
 
-.iw_flightplan_header{
-
+.iw_flightplan_header {
   font-family: "Rubik", sans-serif;
-  color: #001D38;
+  color: #001d38;
 
   font-size: 15px !important;
   text-align: justify !important;
@@ -109,47 +173,43 @@
   width: 100%;
 }
 
-.poi_fp_header_btn{
+.poi_fp_header_btn {
   font-weight: 400;
   font-size: 14px;
   font-family: "Rubik", "sans-serif";
   color: #5c5b5b;
-
 }
 
-.add_user_waypoint_fp{
-
+.add_user_waypoint_fp {
   border-radius: 5px;
   border-style: solid;
   background: #d3d3d3ab;
   padding: 5px;
 }
 
-.poi_fp_body{
+.poi_fp_body {
   max-height: 133px;
   overflow-y: auto;
   background-color: rgb(243, 242, 242);
 }
 
-.poi_fp_header{
+.poi_fp_header {
   /* padding: 1pt; */
   background-color: #a8cfd6;
   color: #1a1a1a;
-
 }
 
-.add_poi_iw_body{
+.add_poi_iw_body {
   font-size: 14px;
   font-family: "Rubik", "sans-serif";
   color: #5c5b5b;
-  
 }
 
 .poi_fp_map_icon .fa-globe-americas {
-  color:#086edb! Important;
+  color: #086edb !important;
 }
 
-.poi_fp_text{
+.poi_fp_text {
   font-weight: 400;
   /* line-height: 28px; */
   /* color: #7A838B; */
@@ -191,9 +251,8 @@
   content: "\2605";
   position: absolute;
   left: 0;
-  color: #FFD700;
+  color: #ffd700;
 }
-
 
 /* Style all font awesome icons */
 .fai {
@@ -249,5 +308,3 @@
   float: none;
   clear: both;
 }
-
-

@@ -9,14 +9,12 @@
         target="_blank"
       >
         <h3 id="firstHeading">{{poiName}}</h3>
-        <h4 id="categoryHeading" class="font-italic">{{poiCategory}}</h4>
+        <h4 id="categoryHeading" style="font-style: italic">{{poiCategory}}</h4>
         <h5 id="categoryHeading">Elevation: {{poiAltitude}}ft</h5>
       </a>
     </div>
     <div class="mb-1">
-      <span class="iw_rating_text" style="color: black"
-        >Community rating: {{rating}}</span
-      >
+      <span style="color: black">Community rating: {{rating}}</span>
     </div>
 
     <div {{hiddenDetails}}>
@@ -80,7 +78,7 @@
               />
               <label for="ratingOptions1">☆</label>
               <div class="clear"></div>
-              <input type="hidden" name="poi_id" value={{poiID}} />
+              <input type="hidden" name="poi_id" value="{{poiID}}" />
             </div>
           </form>
         </div>
@@ -108,17 +106,17 @@
   <div id="bodyContent">
     {{iw_icons_html}}
     <div class="my-2">
-      <p class="iw_description">{{description}}</p>
+      <p class="iw_description">{{poiDescription}}</p>
     </div>
 
     <div>{{defaultsAirportsIWHTML}}</div>
-    <hr class="my-2" />
+    <hr />
   </div>
   <div>
     <div id="btn_addPoiToFlightPlan" class="mt-3 mb-1 {{showAddWaypointBtn}} ">
       <button
-        class="btn btn-primary btn-sm mx-2 py-1"
-        onclick=addPoiToFlightPlan({{poiLatitude}})
+        style="background-color: #007bff"
+        onclick="addPoiToFlightPlan({{poiLatitude}})"
         {{poiLongitude}},
         {{poiName}},
         {{poi.category}})
@@ -128,7 +126,7 @@
     </div>
     <div id="btn_removePoiToFlightPlan" class="my-2 {{showRemoveWaypointBtn}}">
       <button
-        class="btn btn-primary btn-sm mx-2 py-1"
+        style="background-color: #FF4A52"
         onclick="removePoiToFlightPlan({{poiLatitude}})"
         {{poiLongitude}},
         {{poiName}},
@@ -155,7 +153,7 @@
       class="iw_delete_poi"
       style="cursor: pointer"
       href="#"
-      data-id={{poiID}}
+      data-id="{{poiID}}"
       data-toggle="modal"
       data-target="#deleteModal"
       ><i
@@ -170,7 +168,7 @@
     <a
       style="cursor: pointer"
       href="#"
-      data-id={{poiID}}
+      data-id="{{poiID}}"
       data-toggle="modal"
       data-target="#flagReasonModal"
       ><i
