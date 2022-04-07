@@ -30,7 +30,6 @@ const GM_API_KEY = process.env.GM_KEY;
 const loader = new Loader({ apiKey: GM_API_KEY });
 
 const mapDiv = ref(null);
-
 let map = reactive([]);
 
 let clickListener = null;
@@ -99,8 +98,18 @@ onMounted(async () => {
     });
   });
 
-  //build markers and cluster them
-  poisStore.getPoisFromFB().then(async (pois) => {
+  //Get all required data to build info window
+  const iwPromises = [poisStore.getPois(), poisStore.getPoisVisited()];
+  Promise.all(iwPromises)
+  .then(async (data) => {
+  
+    const pois = data[0]
+    const poisVisited = data[1]
+    const userPoisVisied = poisVisited.filter((poi)=>{
+      return poi.user_id == null
+    })
+    console.log(userPoisVisied);
+
     const src = "/html/InfowindowPOI.html";
     const htmlTemplate = await getVueTemplateAsString(src);
     //console.log(poiIWHTML);
@@ -129,6 +138,7 @@ onMounted(async () => {
           poiAltitude: poi.altitude,
           poiCategory: poi.category,
           poiDescription: poi.description,
+          visitedCheck:'fa-check-square-o',
           iwIconsHTML: getIWIconsHTML(
             poi.latitude,
             poi.longitude,

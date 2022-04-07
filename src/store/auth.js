@@ -23,9 +23,15 @@ export const useAuthStore = defineStore("auth", {
   getters: {
     //euqivalent of computed values
     // doubleCount: (state) => state.counter * 2,
-    getUsername: (state) => {
+    getUserID: (state) => {
       if (state.user){
-        return state.user.displayName;
+        return state.user.uid;
+      }
+      return null
+    },
+    getEmail: (state) => {
+      if (state.user){
+        return state.user.email;
       }
       return 'Unknown'
     },

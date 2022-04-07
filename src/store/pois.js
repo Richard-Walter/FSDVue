@@ -7,6 +7,7 @@ import { collection, onSnapshot,getDocs, query, where } from "firebase/firestore
 export const usePoisStore = defineStore("pois", {
   state: () => ({
     pois: ref([]),
+    poisVisited: ref([]),
     isLoading: ref(true),
     poiIWHTML: ref(''),
   }),
@@ -21,7 +22,7 @@ export const usePoisStore = defineStore("pois", {
     //   this.poiIWHTML = poiIWHTML      
     //   this.isLoading = false
     // },
-      async getPoisFromFB(){
+      async getPois(){
       let pois = [];
       const querySnapshot = await getDocs(collection(db, "pois"));
       querySnapshot.forEach((doc) => {
@@ -31,7 +32,18 @@ export const usePoisStore = defineStore("pois", {
       });
       this.pois = pois
       return pois
-    }
+    },
+      async getPoisVisited(){
+      let poisVisited = [];
+      const querySnapshot = await getDocs(collection(db, "visited"));
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        poisVisited.push(data);
+        // console.log(data);
+      });
+      this.poisVisited = poisVisited
+      return poisVisited
+    },
     
 
   },
