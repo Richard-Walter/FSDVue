@@ -82,6 +82,14 @@ button:hover {
   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
 }
 
+.iwIcons {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  box-sizing: border-box;
+  border: solid #E2E6E9 1px;
+  /* padding: 5px; */
+}
+
 .iw_rating_text {
   color: #313131;
 }

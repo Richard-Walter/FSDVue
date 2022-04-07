@@ -1,5 +1,4 @@
 <head>
-  
 </head>
 <div class="gm-style-iw" id="iw-container">
   <div class="iw-poi_header">
@@ -96,7 +95,7 @@
       <a style="cursor: pointer" onclick="iw_update_favorite({{id}})"
         ><i
           id="iw_icon_fav"
-          class="{{visitedCheck}} fa-heart fa-fw fa-lg"
+          class="{{favoriteCheck}} fa-heart fa-fw fa-lg"
           title="favorite"
           style="color: #9e0808"
         ></i
@@ -104,7 +103,9 @@
     </div>
   </div>
   <div id="bodyContent">
-    {{iw_icons_html}}
+    <div class="iwIcons">
+    {{iwIconsHTML}}
+  </div>
     <div class="my-2">
       <p class="iw_description">{{poiDescription}}</p>
     </div>

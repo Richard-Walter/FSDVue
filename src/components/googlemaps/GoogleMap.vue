@@ -1,7 +1,7 @@
 <template>
-<link rel="stylesheet" href="/css/googlemap.css" />
+  <link rel="stylesheet" href="/css/googlemap.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div ref="mapDiv" style="width: 100%; height: 80vh" />
-  
 </template>
 
 <script setup>
@@ -12,9 +12,9 @@ import { Loader } from "@googlemaps/js-api-loader";
 import MarkerClusterer from "@googlemaps/markerclustererplus";
 import {
   buildAirportMarkers,
-  //getPoisFromFB,
   get_marker_icon,
 } from "../../googleMaps/googleMaps";
+import { getIWIconsHTML } from "../../googleMaps/infoWindow.js";
 import { buildCustomControl } from "../../googleMaps/customControls";
 import { usePoisStore } from "../../store/pois.js";
 import { useAuthStore } from "../../store/auth.js";
@@ -128,7 +128,15 @@ onMounted(async () => {
           poiLatitude: poi.latitude,
           poiAltitude: poi.altitude,
           poiCategory: poi.category,
-          poiDescription: poi.description
+          poiDescription: poi.description,
+          iwIconsHTML: getIWIconsHTML(
+            poi.latitude,
+            poi.longitude,
+            poi.name,
+            poi.country,
+            poi.category,
+            poi.icao
+          ),
         });
 
         const infoWindow = new google.maps.InfoWindow({
