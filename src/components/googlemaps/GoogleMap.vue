@@ -16,7 +16,7 @@ import {
   
 } from "../../googleMaps/googleMaps";
 import { getIWIconsHTML, getVisitedCheckIcon, getFavCheckIcon } from "../../googleMaps/infoWindow.js";
-import { buildShowMyFlights, buildFlightPlanControl } from "../../googleMaps/customControls";
+import { buildShowMyFlights, buildFlightPlanControl, buildSearchPOIBBTN } from "../../googleMaps/customControls";
 import { usePoisStore } from "../../store/pois.js";
 import { useAuthStore } from "../../store/auth.js";
 import {
@@ -85,6 +85,10 @@ onMounted(async () => {
   const divFlightPlan = document.createElement("div");
   buildFlightPlanControl(divFlightPlan, map);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(divFlightPlan);
+
+  const divSearch = document.createElement("div");
+  buildSearchPOIBBTN(divSearch, map);
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(divSearch);
 
   buildAirportMarkers(mapZoom.value).then((airportMarkers) => {
     //add a listener for map zoom so we can display airport markers at a certain zoom level
