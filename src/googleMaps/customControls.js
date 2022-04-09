@@ -24,15 +24,15 @@ export function buildShowMyFlights(controlDiv, map){
 
   controlText.style.color = "white";
   controlText.style.fontFamily = "Roboto,Arial,sans-serif";
-  controlText.style.fontSize = "14px";
-  controlText.style.lineHeight = "24px";
-  controlText.style.paddingLeft = "5px";
-  controlText.style.paddingRight = "5px";
+  controlText.style.fontSize = "16px";
+  controlText.style.lineHeight = "32px";
+  controlText.style.paddingLeft = "10px";
+  controlText.style.paddingRight = "10px";
   controlText.innerHTML = "Flight Plan";
   controlUI.appendChild(controlText);
   // Setup the click event listeners: simply set the map to Chicago.
   controlUI.addEventListener("click", () => {
-    alert('toggle flight plan')
+    alert('show my flights')
   });
 }
   export function buildFlightPlanControl(controlDiv, map){
@@ -58,15 +58,15 @@ export function buildShowMyFlights(controlDiv, map){
 
   controlText.style.color = "white";
   controlText.style.fontFamily = "Roboto,Arial,sans-serif";
-  controlText.style.fontSize = "14px";
-  controlText.style.lineHeight = "24px";
+  controlText.style.fontSize = "16px";
+  controlText.style.lineHeight = "32px";
   controlText.style.paddingLeft = "5px";
   controlText.style.paddingRight = "5px";
   controlText.innerHTML = "Show my flights";
   controlUI.appendChild(controlText);
   // Setup the click event listeners: simply set the map to Chicago.
   controlUI.addEventListener("click", () => {
-    
+    alert('toggle flight plan')
   });
 }
 
@@ -77,7 +77,7 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
 
   // Set CSS for the control border.
   const controlUI = document.createElement('div');
-  controlUI.classList = "row";
+  controlUI.classList = "";
   //controlUI.attributes = "hidden";
   // controlUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
   // controlUI.style.cursor = "pointer";
@@ -87,7 +87,8 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
 
   // Set CSS for the control interior.
   const controlText = document.createElement("div");
-  controlText.classList = "input-group poi_search_field autocomplete";
+  controlText.classList = "input-group input-group-sm poi_search_field autocomplete";
+  controlText.id = "searchPOIS";
 
 
   let controlInput = document.createElement('INPUT');
@@ -104,8 +105,6 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
     '   <button class="btn btn-primary" type="button" disabled>' +
     '     <i class="fa fa-search"></i>' +
     '   </button>'
-
-
 
   controlButton.innerHTML = buttonSearchPOIInnerHTML;
   controlText.appendChild(controlInput)

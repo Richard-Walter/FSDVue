@@ -309,11 +309,18 @@ button:hover {
 /* ----------------- POI SEARCH ------------------------- */
 .autocomplete {
   position: relative;
+
   /* display: inline-block; */
+}
+
+#searchPOIS{
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .poi_search_field{
   width: 400px;
+
 }
 
 @media (max-width: 850px) {
@@ -357,6 +364,7 @@ button:hover {
   right: 0;
   height: 400px;
   overflow: auto;
+  
 }
 .autocomplete-items div {
   font-size: 13px;
