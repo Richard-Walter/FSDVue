@@ -161,15 +161,20 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
           controlInput.value = this.getElementsByTagName("input")[0].value;
           closeAllLists();
 
-
           //detemine lat/lng of selected poi
-          let select_poi = infowindow_dict[controlInput.value];
-          console.log(select_poi);
-          let poi_lat = parseFloat(select_poi['latitude']);
-          let poi_lng = parseFloat(select_poi['longitude']);
+          let selectedPOIList = pois.filter((poi)=>{
+            //nconsole.log(poi.name ,controlInput.value );
+            return poi.name == controlInput.value
+          })
+
+          //let selectedPOI = infowindow_dict[controlInput.value];
+          const selectedPOI = selectedPOIList[0]
+          console.log(selectedPOI);
+          let poiLat = parseFloat(selectedPOI['latitude']);
+          let poiLng = parseFloat(selectedPOI['longitude']);
 
           //set map coords and zoom in on poi
-          map.setCenter({ lat: poi_lat, lng: poi_lng });
+          map.setCenter({ lat: poiLat, lng: poiLng });
           map.setZoom(10);
           location.hash = "#" + 'where_togo_area';
 
