@@ -1,4 +1,7 @@
-  export function buildShowMyFlights(controlDiv, map){
+import { usePoisStore } from "../store/pois.js";
+
+
+export function buildShowMyFlights(controlDiv, map){
 
   // Set CSS for the control border.
   const controlUI = document.createElement("div");
@@ -63,7 +66,7 @@
   controlUI.appendChild(controlText);
   // Setup the click event listeners: simply set the map to Chicago.
   controlUI.addEventListener("click", () => {
-    alert('toggle flight on and off')
+    
   });
 }
 
@@ -113,8 +116,13 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
 
   // autocomplete functionality
   controlInput.addEventListener("input", () => {
-    var arr = db_poi_names;
 
+    const poisStore = usePoisStore();
+    
+    const pois = poisStore.pois
+    var poiNames =pois.map((poi)=>{
+      return poi.name
+    });
     var divCreate,
       b,
       i,
@@ -132,21 +140,21 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
     b = document.createElement("DIV");
 
 
-    for (i = 0; i < arr.length; i++) {
+    for (i = 0; i < poiNames.length; i++) {
 
 
-      if (arr[i].toUpperCase().includes(fieldVal.toUpperCase())) {
+      if (poiNames[i].toUpperCase().includes(fieldVal.toUpperCase())) {
 
         b = document.createElement("DIV");
         b.setAttribute("tabindex", "-1")
-        // b.innerHTML = "<strong>" + arr[i].substr(0, fieldVal.length) + "</strong>";
-        match_index = arr[i].toUpperCase().search(fieldVal.toUpperCase());
-        b.innerHTML += arr[i].substring(0, match_index);
-        strong_text = arr[i].substring(match_index, match_index + fieldVal.length)
+        // b.innerHTML = "<strong>" + poiNames[i].substr(0, fieldVal.length) + "</strong>";
+        let match_index = poiNames[i].toUpperCase().search(fieldVal.toUpperCase());
+        b.innerHTML += poiNames[i].substring(0, match_index);
+        let strong_text = poiNames[i].substring(match_index, match_index + fieldVal.length)
         b.innerHTML += "<strong>" + strong_text + "</strong>";
-        b.innerHTML += arr[i].substr(match_index + fieldVal.length, arr[i].length);
-        // b.innerHTML += "<input disabled type='hidden' value='" + arr[i] + "'>";
-        b.innerHTML += `<input disabled type='hidden' value="` + arr[i] + `">`;
+        b.innerHTML += poiNames[i].substr(match_index + fieldVal.length, poiNames[i].length);
+        // b.innerHTML += "<input disabled type='hidden' value='" + poiNames[i] + "'>";
+        b.innerHTML += `<input disabled type='hidden' value="` + poiNames[i] + `">`;
 
         //
         b.addEventListener("click", function (e) {
@@ -156,10 +164,10 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
 
 
           //detemine lat/lng of selected poi
-          select_poi = infowindow_dict[controlInput.value];
+          let select_poi = infowindow_dict[controlInput.value];
           console.log(select_poi);
-          poi_lat = parseFloat(select_poi['latitude']);
-          poi_lng = parseFloat(select_poi['longitude']);
+          let poi_lat = parseFloat(select_poi['latitude']);
+          let poi_lng = parseFloat(select_poi['longitude']);
 
           //set map coords and zoom in on poi
           map.setCenter({ lat: poi_lat, lng: poi_lng });
@@ -201,6 +209,7 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
     }
   });
 
+
   function addActive(autocompleteList) {
     if (!autocompleteList) return false;
     removeActive(autocompleteList);
@@ -231,3 +240,4 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
   });
 
 }
+

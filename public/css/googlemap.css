@@ -304,3 +304,78 @@ button:hover {
   float: none;
   clear: both;
 }
+
+
+/* ----------------- POI SEARCH ------------------------- */
+.autocomplete {
+  position: relative;
+  /* display: inline-block; */
+}
+
+.poi_search_field{
+  width: 400px;
+}
+
+@media (max-width: 850px) {
+  /* .activeflight_panel {
+    display: none;
+  } */
+
+  .poi_search_field{
+    width: 250px;
+  }
+}
+
+@media (max-width: 650px) {
+
+  .poi_search_field{
+    width: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .poi_search_field{
+    width: 150px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .poi_search_field{
+    display: none;
+  }
+}
+
+.autocomplete-items {
+  position: absolute;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 400px;
+  overflow: auto;
+}
+.autocomplete-items div {
+  font-size: 13px;
+
+  /* cursor: not-allowed; */
+  padding: 10px;
+  background-color: rgb(247, 244, 244);
+  border-bottom: 1px solid #d4d4d4;
+  border-left: 1px solid #d4d4d4;
+  border-right: 1px solid #d4d4d4;
+}
+
+
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
