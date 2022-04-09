@@ -24,7 +24,7 @@ export function buildShowMyFlights(controlDiv, map){
 
   controlText.style.color = "white";
   controlText.style.fontFamily = "Roboto,Arial,sans-serif";
-  controlText.style.fontSize = "16px";
+  controlText.style.fontSize = "14px";
   controlText.style.lineHeight = "32px";
   controlText.style.paddingLeft = "10px";
   controlText.style.paddingRight = "10px";
@@ -58,7 +58,7 @@ export function buildShowMyFlights(controlDiv, map){
 
   controlText.style.color = "white";
   controlText.style.fontFamily = "Roboto,Arial,sans-serif";
-  controlText.style.fontSize = "16px";
+  controlText.style.fontSize = "14px";
   controlText.style.lineHeight = "32px";
   controlText.style.paddingLeft = "5px";
   controlText.style.paddingRight = "5px";

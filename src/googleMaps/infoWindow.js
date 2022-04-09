@@ -39,9 +39,9 @@ export function getIWIconsHTML(
     country +
     '" target="_blank" class="fa fai fa-youtube" title="Youtube"></a>' +
     skyvectorHTML +
-    //   '<i id="copyCoordsIcon" class="fa fai fa-map-marker-alt" title="Copy coordinates" onclick="copyLatLon()" style="cursor:pointer"></i>'+
-    //   '<p id="coordsCopiedTXT" class="my-0" style="font-size: 0.8em; display:none" >Coorindates copied: ' + latitude + ', ' + longitude + '</p>' +
-    //   '<input type="hidden" id="poiLatLong" name="poiLatLong" value="' + latitude + ', ' + longitude + '">' +
+      '<i id="copyCoordsIcon" class="fa fai fai-map-marker fa-map-marker fa-lg" title="Copy coordinates" onclick="copyLatLon()" style="color:#9E1010; cursor:pointer"></i>'+
+      '<p id="coordsCopiedTXT" class="my-0" style="font-size: 0.8em; display:none" >Coorindates copied: ' + latitude + ', ' + longitude + '</p>' +
+      '<input type="hidden" id="poiLatLong" name="poiLatLong" value="' + latitude + ', ' + longitude + '">' +
     "</div>";
 
   return iwIconsHTML;
