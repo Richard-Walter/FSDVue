@@ -9,6 +9,7 @@ export const usePoisStore = defineStore("pois", {
     pois: ref([]),
     poisVisited: ref([]),
     poisFav: ref([]),
+    poisFlagged: ref([]),
     isLoading: ref(true),
     poiIWHTML: ref(''),
   }),
@@ -55,6 +56,17 @@ export const usePoisStore = defineStore("pois", {
       });
       this.poisFav = poisFav
       return poisFav
+    },
+      async getPoisFlagged(){
+      let poisFlagged = [];
+      const querySnapshot = await getDocs(collection(db, "flagged"));
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        poisFlagged.push(data);
+        // console.log(data);
+      });
+      this.poisFlagged = poisFlagged
+      return poisFlagged
     },
     
 

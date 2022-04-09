@@ -64,3 +64,11 @@ export function getFavCheckIcon(poiID, userFavPois) {
   }
   return "fa-heart-o";
 }
+export function getFlaggedCheckIcon(poiID, userFlaggedPois) {
+  for (let i = 0; i < userFlaggedPois.length; i++) {
+    if (userFlaggedPois[i].poi_id == poiID) {
+      return "fa-flag ";
+    }
+  }
+  return "fa-flag-o";
+}
