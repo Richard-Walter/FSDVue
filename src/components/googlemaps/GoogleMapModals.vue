@@ -1,4 +1,4 @@
-  <!-- Modal -->
+<!-- Modal -->
 <template>
   <div
     class="modal fade"
@@ -33,3 +33,9 @@
     </div>
   </div>
 </template>
+<script setup>
+import { ref } from "vue";
+
+const displayText = ref('Tracking active fllight - add controls here like center, hide trail, show flight plan Poi audio, save fight now')
+
+</script>
