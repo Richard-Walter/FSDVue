@@ -107,7 +107,7 @@ onMounted(async () => {
     });
   });
 
-  //Get all required data to build info window
+  //Get all required data to build poi info window
   const iwPromises = [poisStore.getPois(), poisStore.getPoisVisited(), poisStore.getPoisFav(), poisStore.getPoisFlagged()];
   Promise.all(iwPromises)
   .then(async (data) => {
