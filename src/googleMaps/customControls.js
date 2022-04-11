@@ -102,7 +102,7 @@ export function  buildSearchPOIBBTN(controlDiv, map) {
 
   let buttonSearchPOIInnerHTML =
 
-    '   <button class="btn btn-primary" type="button" disabled>' +
+    '   <button class="search_icon" type="button" disabled>' +
     '     <i class="fa fa-search"></i>' +
     '   </button>'
 
