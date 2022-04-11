@@ -10,7 +10,6 @@ export const usePoisStore = defineStore("pois", {
     poisVisited: ref([]),
     poisFav: ref([]),
     poisFlagged: ref([]),
-    poisRatings: ref([]),
     isLoading: ref(true),
     poiIWHTML: ref(''),
   }),
@@ -59,6 +58,7 @@ export const usePoisStore = defineStore("pois", {
       return poisFav
     },
       async getPoisFlagged(){
+        
       let poisFlagged = [];
       const querySnapshot = await getDocs(collection(db, "flagged"));
       querySnapshot.forEach((doc) => {
@@ -69,16 +69,20 @@ export const usePoisStore = defineStore("pois", {
       this.poisFlagged = poisFlagged
       return poisFlagged
     },
-      async getPoisRatings(){
-      let poisRatings = [];
-      const querySnapshot = await getDocs(collection(db, "ratings"));
-      querySnapshot.forEach((doc) => {
-        let data = doc.data();
-        poisRatings.push(data);
-        // console.log(data);
-      });
-      this.poisRatings = poisRatings
-      return poisRatings
+      getPoiRating(poiID){
+      
+      
+      const poiData = this.pois.filter((poi)=> poi.id ===poiID)
+
+      const poiRatings = poiData[0].ratings
+      let sumRatings = 0
+      poiRatings.forEach((rating)=>{
+        sumRatings += rating.rating_score
+      })
+      const ratingsAvg = sumRatings / poiRatings.length;
+
+      return ratingsAvg
+
     },
     
 

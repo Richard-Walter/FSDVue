@@ -116,15 +116,17 @@ onMounted(async () => {
     const poisVisited = data[1]
     const poisFav = data[2]
     const poisFlagged = data[3]
+    const poisRated = data[4]
     const userPoisVisited = poisVisited.filter((poi)=>{
       return poi.user_id == authStore.getUserID
     })
     const userPoisFav = poisFav.filter((poi)=>{
       return poi.user_id == authStore.getUserID
     })
-    const userPoisFlagged = poisFav.filter((poi)=>{
+    const userPoisFlagged = poisFlagged.filter((poi)=>{
       return poi.user_id == authStore.getUserID
     })
+
 
     const src = "/html/InfowindowPOI.html";
     const htmlTemplate = await getVueTemplateAsString(src);
@@ -143,6 +145,8 @@ onMounted(async () => {
       clusterMarkers.push(poiMarker);
 
       //add info window here
+      
+
 
       poiMarker.addListener("click", function (event) {
         const poiIWHTML = vueTemplateToString(htmlTemplate, {
@@ -157,6 +161,7 @@ onMounted(async () => {
           visitedCheck:getVisitedCheckIcon(poi.id, userPoisVisited),
           favoriteCheck:getFavCheckIcon(poi.id, userPoisFav),
           flaggedCheck:getFlaggedCheckIcon(poi.id, userPoisFlagged),
+          poiRating:poisStore.getPoiRating(poi.id),
           iwIconsHTML: getIWIconsHTML(
             poi.latitude,
             poi.longitude,

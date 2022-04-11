@@ -3,7 +3,7 @@
 
     <p>Current user is: {{ authStore.getUsername}}</p>
     <TipsAndTricks />
-       <ActiveFlightBar/>
+    <ActiveFlightBar/>
     <GoogleMap />
     <GoogleMapModals/>
     <PopularDestinations />
